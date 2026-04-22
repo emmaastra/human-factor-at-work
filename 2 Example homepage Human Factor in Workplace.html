@@ -1,0 +1,1565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Human Factor at Work — Leicester Vaughan College</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal:       #1E4E5F;
+    --teal-mid:   #2D6E84;
+    --teal-light: #4A9DB5;
+    --amber:      #C9843A;
+    --amber-warm: #E8A55A;
+    --cream:      #F7F2EA;
+    --cream-dark: #EDE5D8;
+    --slate:      #2C3440;
+    --slate-mid:  #4A5568;
+    --slate-light:#718096;
+    --white:      #FFFFFF;
+    --soft-green: #5B8A6F;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--slate);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(30,78,95,0.97);
+    backdrop-filter: blur(12px);
+    padding: 0 48px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-wordmark {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: white;
+    line-height: 1.15;
+  }
+
+  .nav-wordmark em { font-style: italic; color: var(--amber-warm); }
+
+  .nav-sub {
+    font-size: 8px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.38);
+    margin-top: 2px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+    text-decoration: none;
+    transition: color 0.2s;
+    font-weight: 400;
+  }
+
+  .nav-links a:hover { color: white; }
+
+  .nav-cta {
+    background: var(--amber) !important;
+    color: white !important;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-weight: 500 !important;
+    font-size: 13px !important;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--amber-warm) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--teal);
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 80px 64px 64px;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  /* Subtle background arcs */
+  .hero-arc {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.05);
+    right: -10%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .hero-content {
+    max-width: 580px;
+    position: relative;
+    z-index: 2;
+    animation: fadeUp 0.9s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(28px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+
+  .hero-label {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--amber-warm);
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(44px, 6vw, 72px);
+    font-weight: 700;
+    color: white;
+    line-height: 1.06;
+    margin-bottom: 8px;
+    letter-spacing: -1px;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--amber-warm);
+  }
+
+  .hero-strapline {
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.7);
+    margin-top: 20px;
+    margin-bottom: 40px;
+    max-width: 480px;
+    line-height: 1.7;
+  }
+
+  /* Four CTA buttons */
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 48px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .btn-primary {
+    background: var(--amber);
+    color: white;
+  }
+  .btn-primary:hover { background: var(--amber-warm); transform: translateY(-1px); }
+
+  .btn-outline {
+    background: rgba(255,255,255,0.08);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+  .btn-outline:hover { background: rgba(255,255,255,0.15); transform: translateY(-1px); }
+
+  .btn-icon { font-size: 16px; }
+
+  /* Stats strip */
+  .hero-stats {
+    display: flex;
+    gap: 40px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .stat-item {}
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--amber-warm);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 4px;
+    max-width: 140px;
+    line-height: 1.4;
+  }
+
+  /* Hero logo mark — right side */
+  .hero-visual {
+    position: absolute;
+    right: 8%;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    animation: fadeIn 1.2s ease 0.3s both;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  @keyframes fadeIn {
+    from { opacity:0; }
+    to   { opacity:1; }
+  }
+
+  /* ── SECTION SHARED ── */
+  .section { padding: 88px 64px; }
+  .section-inner { max-width: 1080px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 700;
+    color: var(--teal);
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+
+  .section-title em { font-style: italic; color: var(--amber); }
+
+  .divider {
+    width: 40px;
+    height: 3px;
+    background: var(--amber);
+    border-radius: 2px;
+    margin-bottom: 28px;
+  }
+
+  .lead {
+    font-size: 16px;
+    color: var(--slate-mid);
+    max-width: 620px;
+    line-height: 1.8;
+    margin-bottom: 48px;
+  }
+
+  /* ── WHAT IS THIS — two col ── */
+  .what-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .what-text p {
+    font-size: 15px;
+    color: var(--slate-mid);
+    line-height: 1.85;
+    margin-bottom: 18px;
+  }
+
+  .stat-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .stat-card {
+    background: var(--cream);
+    border-radius: 12px;
+    padding: 24px 28px;
+    border-left: 4px solid var(--amber);
+  }
+
+  .stat-card-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--teal);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-card-text {
+    font-size: 13px;
+    color: var(--slate-mid);
+    line-height: 1.6;
+  }
+
+  /* ── WHO IS IT FOR — audience cards ── */
+  .audience-section {
+    background: var(--teal);
+    padding: 88px 64px;
+  }
+
+  .audience-section .section-title { color: white; }
+  .audience-section .section-label { color: var(--amber-warm); }
+  .audience-section .divider { background: var(--amber-warm); }
+  .audience-section .lead { color: rgba(255,255,255,0.6); }
+
+  .audience-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .audience-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px;
+    padding: 28px 24px;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .audience-card:hover {
+    background: rgba(255,255,255,0.1);
+    transform: translateY(-3px);
+  }
+
+  .audience-icon {
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+
+  .audience-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+
+  .audience-title em { font-style: italic; color: var(--amber-warm); }
+
+  .audience-text {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.7;
+  }
+
+  /* ── WHAT WE OFFER ── */
+  .offer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 48px;
+  }
+
+  .offer-card {
+    background: white;
+    border-radius: 14px;
+    padding: 32px 28px;
+    border: 1px solid var(--cream-dark);
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+
+  .offer-card:hover {
+    box-shadow: 0 8px 32px rgba(30,78,95,0.1);
+    transform: translateY(-2px);
+  }
+
+  .offer-tag {
+    display: inline-block;
+    background: var(--teal);
+    color: white;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+
+  .offer-tag.amber { background: var(--amber); }
+  .offer-tag.green { background: var(--soft-green); }
+
+  .offer-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--teal);
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+
+  .offer-title em { font-style: italic; color: var(--amber); }
+
+  .offer-text {
+    font-size: 13px;
+    color: var(--slate-mid);
+    line-height: 1.75;
+    margin-bottom: 16px;
+  }
+
+  .offer-topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .topic-pill {
+    background: var(--cream);
+    border-radius: 20px;
+    font-size: 11px;
+    color: var(--slate-mid);
+    padding: 4px 10px;
+  }
+
+  /* ── FORMATS STRIP ── */
+  .formats-strip {
+    background: var(--cream);
+    border-radius: 14px;
+    padding: 28px 36px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 48px;
+  }
+
+  .format-item { display: flex; align-items: flex-start; gap: 14px; }
+
+  .format-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--amber);
+    flex-shrink: 0;
+    margin-top: 5px;
+  }
+
+  .format-label {
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--teal);
+    margin-bottom: 4px;
+  }
+
+  .format-desc {
+    font-size: 12px;
+    color: var(--slate-mid);
+    line-height: 1.6;
+  }
+
+  /* ── CROSSROADS CAFÉ ── */
+  .cafe-section {
+    background: var(--slate);
+    padding: 88px 64px;
+  }
+
+  .cafe-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .cafe-section .section-title { color: white; }
+  .cafe-section .section-label { color: var(--amber-warm); }
+  .cafe-section .divider { background: var(--amber-warm); }
+
+  .cafe-description {
+    font-size: 15px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.85;
+    margin-bottom: 28px;
+  }
+
+  .cafe-modes {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+
+  .cafe-mode {
+    flex: 1;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+
+  .cafe-mode-icon { font-size: 22px; margin-bottom: 8px; }
+
+  .cafe-mode-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 4px;
+  }
+
+  .cafe-mode-text {
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.5;
+  }
+
+  .cafe-topics-title {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--amber-warm);
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+
+  .cafe-topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .cafe-topic {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.75);
+    padding: 7px 13px;
+    transition: background 0.2s;
+  }
+
+  .cafe-topic:hover { background: rgba(255,255,255,0.12); }
+
+  /* Workshop tips preview */
+  .tips-card {
+    background: rgba(201,132,58,0.12);
+    border: 1px solid rgba(201,132,58,0.3);
+    border-radius: 14px;
+    padding: 28px;
+  }
+
+  .tips-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--amber-warm);
+    margin-bottom: 6px;
+    font-style: italic;
+  }
+
+  .tips-card-sub {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 20px;
+  }
+
+  .tip-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .tip-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+  .tip-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--amber);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 28px;
+  }
+
+  .tip-text {
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.6;
+    padding-top: 2px;
+  }
+
+  .tip-text strong { color: rgba(255,255,255,0.9); }
+
+  /* ── APP / DOWNLOAD ── */
+  .app-section {
+    background: var(--cream);
+    padding: 88px 64px;
+  }
+
+  .app-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+
+  .app-features {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 32px;
+  }
+
+  .app-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: white;
+    border-radius: 12px;
+    padding: 18px 20px;
+    border: 1px solid var(--cream-dark);
+  }
+
+  .app-feature-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .app-feature-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--teal);
+    margin-bottom: 3px;
+  }
+
+  .app-feature-text {
+    font-size: 12px;
+    color: var(--slate-mid);
+    line-height: 1.6;
+  }
+
+  /* Phone mockup */
+  .phone-mockup {
+    background: var(--teal);
+    border-radius: 32px;
+    padding: 24px 20px;
+    max-width: 260px;
+    margin: 0 auto;
+    box-shadow: 0 24px 64px rgba(30,78,95,0.25);
+    position: relative;
+  }
+
+  .phone-notch {
+    width: 80px;
+    height: 8px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 4px;
+    margin: 0 auto 20px;
+  }
+
+  .phone-screen {
+    background: var(--cream);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .phone-header {
+    background: var(--teal);
+    padding: 16px 16px 20px;
+    text-align: center;
+  }
+
+  .phone-header-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: white;
+    line-height: 1.2;
+  }
+
+  .phone-header-title em { color: var(--amber-warm); font-style: italic; }
+
+  .phone-body { padding: 14px; }
+
+  .phone-card {
+    background: white;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 8px;
+    border-left: 3px solid var(--amber);
+  }
+
+  .phone-card-label {
+    font-size: 8px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 4px;
+  }
+
+  .phone-card-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--teal);
+    line-height: 1.3;
+  }
+
+  .phone-card-text {
+    font-size: 9px;
+    color: var(--slate-mid);
+    margin-top: 3px;
+    line-height: 1.4;
+  }
+
+  .phone-cta {
+    background: var(--amber);
+    color: white;
+    font-size: 10px;
+    font-weight: 600;
+    text-align: center;
+    padding: 8px;
+    border-radius: 6px;
+    margin-top: 4px;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── NEWSLETTER ── */
+  .newsletter-strip {
+    background: var(--amber);
+    padding: 48px 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .newsletter-text {}
+
+  .newsletter-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 6px;
+  }
+
+  .newsletter-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.75);
+  }
+
+  .newsletter-form {
+    display: flex;
+    gap: 0;
+    flex-shrink: 0;
+  }
+
+  .newsletter-input {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px 0 0 8px;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    outline: none;
+    width: 260px;
+    background: rgba(255,255,255,0.95);
+    color: var(--slate);
+  }
+
+  .newsletter-btn {
+    background: var(--teal);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 0 8px 8px 0;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: background 0.2s;
+  }
+
+  .newsletter-btn:hover { background: var(--teal-mid); }
+
+  /* ── ABOUT / PARTNERS ── */
+  .about-section {
+    padding: 88px 64px;
+    background: white;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .about-text p {
+    font-size: 14px;
+    color: var(--slate-mid);
+    line-height: 1.85;
+    margin-bottom: 16px;
+  }
+
+  .partner-strip {
+    background: var(--cream);
+    border-radius: 14px;
+    padding: 32px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 32px;
+    flex-wrap: wrap;
+    margin-top: 32px;
+  }
+
+  .partner-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .partner-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--slate-light);
+  }
+
+  /* Values list */
+  .values-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 28px;
+  }
+
+  .value-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: var(--cream);
+    border-radius: 10px;
+    padding: 14px 18px;
+  }
+
+  .value-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--amber);
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+
+  .value-text {
+    font-size: 13px;
+    color: var(--slate-mid);
+    line-height: 1.6;
+  }
+
+  .value-text strong { color: var(--teal); }
+
+  /* ── CONTACT / REGISTER ── */
+  .contact-section {
+    background: var(--teal);
+    padding: 88px 64px;
+  }
+
+  .contact-section .section-title { color: white; }
+  .contact-section .section-label { color: var(--amber-warm); }
+  .contact-section .divider { background: var(--amber-warm); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 40px;
+  }
+
+  .contact-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 14px;
+    padding: 28px 22px;
+    text-align: center;
+    transition: background 0.2s, transform 0.2s;
+    text-decoration: none;
+    display: block;
+  }
+
+  .contact-card:hover {
+    background: rgba(255,255,255,0.12);
+    transform: translateY(-3px);
+  }
+
+  .contact-card-icon { font-size: 36px; margin-bottom: 14px; }
+
+  .contact-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  .contact-card-title em { font-style: italic; color: var(--amber-warm); }
+
+  .contact-card-text {
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .contact-card-btn {
+    display: inline-block;
+    background: var(--amber);
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: background 0.2s;
+  }
+
+  .contact-card-btn:hover { background: var(--amber-warm); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0f2830;
+    padding: 40px 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .footer-left {
+    font-size: 12px;
+    color: rgba(255,255,255,0.35);
+    line-height: 1.7;
+  }
+
+  .footer-right {
+    font-size: 11px;
+    color: rgba(255,255,255,0.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    .hero { padding: 100px 32px 64px; }
+    .hero-visual { display: none; }
+    .section, .audience-section, .cafe-section, .app-section, .about-section, .contact-section { padding: 64px 32px; }
+    .what-grid, .cafe-inner, .app-inner, .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .audience-grid, .offer-grid { grid-template-columns: 1fr 1fr; }
+    .contact-grid { grid-template-columns: 1fr 1fr; }
+    .formats-strip { grid-template-columns: 1fr; }
+    .newsletter-strip { flex-direction: column; padding: 40px 32px; }
+    .newsletter-form { width: 100%; }
+    .newsletter-input { flex: 1; }
+    footer { padding: 32px; flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <div class="nav-logo">
+    <svg width="32" height="32" viewBox="0 0 200 210" fill="none">
+      <path d="M 38 90 A 64 64 0 0 1 162 90" stroke="#4A9DB5" stroke-width="2.5" fill="none" opacity="0.5" stroke-linecap="round"/>
+      <path d="M 55 90 A 47 47 0 0 1 145 90" stroke="rgba(255,255,255,0.6)" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <ellipse cx="100" cy="110" rx="42" ry="46" fill="white"/>
+      <path d="M 68 128 Q 68 156 100 162 Q 132 156 132 128" fill="white"/>
+      <path d="M 84 110 Q 84 90 100 88 Q 116 90 116 110 Q 116 120 108 126 L 92 126 Q 84 120 84 110 Z" fill="#1E4E5F" opacity="0.9"/>
+      <rect x="91" y="126" width="18" height="5" rx="2" fill="#1E4E5F" opacity="0.8"/>
+      <rect x="92" y="131" width="16" height="4" rx="2" fill="#1E4E5F" opacity="0.65"/>
+      <path d="M 94 118 Q 97 112 100 116 Q 103 112 106 118" stroke="#E8A55A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <line x1="94" y1="118" x2="94" y2="126" stroke="#E8A55A" stroke-width="1.8" stroke-linecap="round"/>
+      <line x1="106" y1="118" x2="106" y2="126" stroke="#E8A55A" stroke-width="1.8" stroke-linecap="round"/>
+      <line x1="100" y1="85" x2="100" y2="78" stroke="#C9843A" stroke-width="2" stroke-linecap="round"/>
+      <line x1="113" y1="89" x2="119" y2="83" stroke="#C9843A" stroke-width="1.8" stroke-linecap="round"/>
+      <line x1="87"  y1="89" x2="81"  y2="83" stroke="#C9843A" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="100" cy="108" r="5" fill="#C9843A"/>
+    </svg>
+    <div>
+      <div class="nav-wordmark">Human Factor <em>at Work</em></div>
+      <div class="nav-sub">Leicester Vaughan College</div>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#offer">What We Offer</a></li>
+    <li><a href="#cafe">Crossroads Café</a></li>
+    <li><a href="#app">App & Resources</a></li>
+    <li><a href="#contact" class="nav-cta btn">Register Interest</a></li>
+  </ul>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero" id="top">
+  <div class="hero-bg">
+    <div class="hero-arc" style="width:900px;height:900px;"></div>
+    <div class="hero-arc" style="width:650px;height:650px;"></div>
+    <div class="hero-arc" style="width:420px;height:420px;"></div>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-label">Leicester Vaughan College · NEBOSH Social Purpose Fund</div>
+    <h1 class="hero-title">Human Factor<br><em>at Work</em></h1>
+    <p class="hero-strapline">A pioneering project supporting psychological health and wellbeing across working life — from your first job to retirement, and everything in between.</p>
+
+    <div class="hero-ctas">
+      <a href="#contact" class="btn btn-primary"><span class="btn-icon">✦</span> Register Interest</a>
+      <a href="#app" class="btn btn-outline"><span class="btn-icon">↓</span> Download the App</a>
+      <a href="#cafe" class="btn btn-outline"><span class="btn-icon">☕</span> Book Crossroads Café</a>
+      <a href="mailto:info@vaughan.coop" class="btn btn-outline"><span class="btn-icon">→</span> Contact the Team</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">52%</div>
+        <div class="stat-label">of UK workers say their workplace is psychologically healthy</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">81%</div>
+        <div class="stat-label">of executives rate their org as healthy — vs 46% of frontline staff</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">£78k</div>
+        <div class="stat-label">NEBOSH Social Purpose Fund grant for Year 1</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero logo mark — no text labels on arcs -->
+  <div class="hero-visual">
+    <svg width="280" height="290" viewBox="0 0 200 210" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Outer arc — no label -->
+      <path d="M 22 90 A 80 80 0 0 1 178 90" stroke="#4A9DB5" stroke-width="1.5" fill="none" opacity="0.25" stroke-linecap="round"/>
+      <circle cx="22"  cy="90" r="2.5" fill="#4A9DB5" opacity="0.3"/>
+      <circle cx="178" cy="90" r="2.5" fill="#4A9DB5" opacity="0.3"/>
+      <!-- Mid arc -->
+      <path d="M 38 90 A 64 64 0 0 1 162 90" stroke="#4A9DB5" stroke-width="2" fill="none" opacity="0.45" stroke-linecap="round"/>
+      <circle cx="38"  cy="90" r="3" fill="#4A9DB5" opacity="0.45"/>
+      <circle cx="162" cy="90" r="3" fill="#4A9DB5" opacity="0.45"/>
+      <!-- Inner arc -->
+      <path d="M 55 90 A 47 47 0 0 1 145 90" stroke="rgba(255,255,255,0.6)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <circle cx="55"  cy="90" r="3.5" fill="rgba(255,255,255,0.55)"/>
+      <circle cx="145" cy="90" r="3.5" fill="rgba(255,255,255,0.55)"/>
+      <!-- Head -->
+      <ellipse cx="100" cy="110" rx="42" ry="46" fill="white" opacity="0.95"/>
+      <path d="M 68 128 Q 68 156 100 162 Q 132 156 132 128" fill="white" opacity="0.95"/>
+      <rect x="88" y="155" width="24" height="18" rx="4" fill="white" opacity="0.65"/>
+      <path d="M 52 195 Q 58 172 88 172 Q 100 170 112 172 Q 142 172 148 195" fill="white" opacity="0.4"/>
+      <!-- Lightbulb -->
+      <circle cx="100" cy="108" r="18" fill="#E8A55A" opacity="0.18"/>
+      <path d="M 84 110 Q 84 90 100 88 Q 116 90 116 110 Q 116 120 108 126 L 92 126 Q 84 120 84 110 Z" fill="white" opacity="0.92"/>
+      <rect x="91" y="126" width="18" height="5" rx="2" fill="white" opacity="0.85"/>
+      <rect x="92" y="131" width="16" height="4" rx="2" fill="white" opacity="0.72"/>
+      <rect x="93" y="135" width="14" height="4" rx="2" fill="white" opacity="0.58"/>
+      <path d="M 94 118 Q 97 112 100 116 Q 103 112 106 118" stroke="#E8A55A" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+      <line x1="94" y1="118" x2="94" y2="126" stroke="#E8A55A" stroke-width="1.8" stroke-linecap="round"/>
+      <line x1="106" y1="118" x2="106" y2="126" stroke="#E8A55A" stroke-width="1.8" stroke-linecap="round"/>
+      <!-- Glow rays -->
+      <line x1="100" y1="85" x2="100" y2="76" stroke="#E8A55A" stroke-width="2" stroke-linecap="round"/>
+      <line x1="113" y1="89" x2="120" y2="82" stroke="#E8A55A" stroke-width="1.8" stroke-linecap="round"/>
+      <line x1="87"  y1="89" x2="80"  y2="82" stroke="#E8A55A" stroke-width="1.8" stroke-linecap="round"/>
+      <line x1="118" y1="102" x2="127" y2="99" stroke="#E8A55A" stroke-width="1.4" stroke-linecap="round"/>
+      <line x1="82"  y1="102" x2="73"  y2="99" stroke="#E8A55A" stroke-width="1.4" stroke-linecap="round"/>
+      <!-- Amber centre dot -->
+      <circle cx="100" cy="108" r="5.5" fill="#C9843A"/>
+      <circle cx="100" cy="108" r="2.8" fill="#E8A55A"/>
+    </svg>
+
+    <!-- Wordmark below — no arc text labels -->
+    <div style="text-align:center;">
+      <div style="font-family:'Playfair Display',serif; font-size:28px; font-weight:700; color:white; line-height:1.1; letter-spacing:-0.5px;">Human Factor<br><em style="color:#E8A55A; font-style:italic;">at Work</em></div>
+      <div style="font-size:9px; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-top:10px;">Leicester Vaughan College</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ WHAT IS THIS PROJECT ══ -->
+<section class="section" id="about">
+  <div class="section-inner">
+    <div class="section-label">About the Project</div>
+    <div class="what-grid">
+      <div class="what-text">
+        <h2 class="section-title">What is the <em>Human Factor at Work?</em></h2>
+        <div class="divider"></div>
+        <p>We spend one third of our waking week at work for fifty years of our lives. Yet how often does our workplace genuinely support our psychological health — the inner experience of stress, purpose, balance, and belonging?</p>
+        <p>The Human Factor at Work is a pioneering project run by Leicester Vaughan College, funded by the NEBOSH Social Purpose Fund. Over Year 1, we are engaging employers and workers across Leicester's private, public, and voluntary sectors to develop courses, workshops, and community spaces that address the real human experience of working life.</p>
+        <p>This is not a compliance programme. It is not a tick-box exercise. It is a space to think honestly about what work does to people — and what people can do about it, individually and together.</p>
+        <p>The project covers the full working life course: preparing for work, starting a new job, managing stress and workload, balancing caring responsibilities, navigating career transitions, managing teams, and preparing for retirement.</p>
+        <a href="#offer" class="btn btn-primary" style="margin-top:8px;">See what we offer →</a>
+      </div>
+      <div class="stat-cards">
+        <div class="stat-card">
+          <div class="stat-card-num">52%</div>
+          <div class="stat-card-text">of workers in the UK describe their workplace as psychologically healthy — below the European average (European Workforce Study 2025, 24,938 respondents)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-num">81% vs 46%</div>
+          <div class="stat-card-text">Executives vs frontline workers rating their organisation's health positively — one of the largest gaps in Europe. Something is being missed at the top.</div>
+        </div>
+        <div class="stat-card" style="border-left-color:var(--teal);">
+          <div class="stat-card-num" style="color:var(--teal);">50 years</div>
+          <div class="stat-card-text">The average full-time worker spends one third of their waking week at work across five decades of their life. Psychological health at work matters enormously — and we can do better.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ WHO IS IT FOR ══ -->
+<section class="audience-section" id="who">
+  <div class="section-inner">
+    <div class="section-label">Who is this for?</div>
+    <h2 class="section-title">This project is for <em>everyone</em> at work</h2>
+    <div class="divider"></div>
+    <p class="lead">Whether you are an individual worker, a manager, an employer, or someone navigating work on your own terms — there is something here for you.</p>
+    <div class="audience-grid">
+      <div class="audience-card">
+        <div class="audience-icon">🧑‍💼</div>
+        <div class="audience-title"><em>Individual</em> workers</div>
+        <p class="audience-text">Anyone in any sector navigating the realities of working life — stress, change, relationships at work, life balance, transitions, and finding meaning in what you do.</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">👥</div>
+        <div class="audience-title">Managers &amp; <em>team leaders</em></div>
+        <p class="audience-text">New to management or experienced — developing the skills to lead in psychologically safe ways, support your team's wellbeing, and handle difficult situations with confidence.</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">🏢</div>
+        <div class="audience-title">Employers &amp; <em>organisations</em></div>
+        <p class="audience-text">Private, public, and third sector employers wanting to build genuinely healthy workplace cultures — beyond HR policy, into lived experience and real change.</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">🛠️</div>
+        <div class="audience-title">Sole traders &amp; <em>freelancers</em></div>
+        <p class="audience-text">Working for yourself brings unique pressures — isolation, uncertainty, the blurring of work and life. This project explicitly includes those working outside traditional employment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ WHAT WE OFFER ══ -->
+<section class="section" id="offer">
+  <div class="section-inner">
+    <div class="section-label">Courses &amp; Workshops</div>
+    <h2 class="section-title">What we <em>offer</em></h2>
+    <div class="divider"></div>
+    <p class="lead">All our courses and workshops blend core concepts with creative reflection, peer support skills, and practical application to your own working situation.</p>
+
+    <div class="offer-grid">
+      <div class="offer-card">
+        <div class="offer-tag">Life Course</div>
+        <h3 class="offer-title">Working life <em>transitions</em></h3>
+        <p class="offer-text">From preparing for your first job to navigating retirement — exploring the psychological experience of every major transition across a working life.</p>
+        <div class="offer-topics">
+          <span class="topic-pill">Preparing for work</span>
+          <span class="topic-pill">Starting a new job</span>
+          <span class="topic-pill">Career redirection</span>
+          <span class="topic-pill">Midlife review</span>
+          <span class="topic-pill">Preparing for retirement</span>
+        </div>
+      </div>
+
+      <div class="offer-card">
+        <div class="offer-tag amber">Wellbeing</div>
+        <h3 class="offer-title">Psychological health <em>at work</em></h3>
+        <p class="offer-text">Understanding and contributing to psychologically safe workplaces — for individuals and teams. What does it actually mean to feel safe, respected, and able to do your best work?</p>
+        <div class="offer-topics">
+          <span class="topic-pill">Psychological safety</span>
+          <span class="topic-pill">Emotional literacy</span>
+          <span class="topic-pill">Balancing work &amp; life</span>
+          <span class="topic-pill">Caring responsibilities</span>
+          <span class="topic-pill">Secondary trauma</span>
+        </div>
+      </div>
+
+      <div class="offer-card">
+        <div class="offer-tag green">Leadership</div>
+        <h3 class="offer-title">Management <em>development</em></h3>
+        <p class="offer-text">Leadership that genuinely supports people — new managers finding their feet, experienced managers building psychologically safe teams, action learning sets across organisations.</p>
+        <div class="offer-topics">
+          <span class="topic-pill">New to management</span>
+          <span class="topic-pill">Managing for safety</span>
+          <span class="topic-pill">Action learning</span>
+          <span class="topic-pill">Organisational change</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Delivery formats -->
+    <div class="formats-strip">
+      <div class="format-item">
+        <div class="format-dot"></div>
+        <div>
+          <div class="format-label">In-house</div>
+          <div class="format-desc">Delivered within your organisation — tailored to your team, your sector, your specific challenges.</div>
+        </div>
+      </div>
+      <div class="format-item">
+        <div class="format-dot" style="background:var(--teal);"></div>
+        <div>
+          <div class="format-label">Composite cohort</div>
+          <div class="format-desc">Mixed groups of 1–4 people from different organisations — cross-sector learning and peer connection.</div>
+        </div>
+      </div>
+      <div class="format-item">
+        <div class="format-dot" style="background:var(--soft-green);"></div>
+        <div>
+          <div class="format-label">Open access</div>
+          <div class="format-desc">Open to individuals — no employer needed. Evening and Saturday sessions to fit around working life.</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:var(--teal); border-radius:12px; padding:24px 32px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;">
+      <div>
+        <div style="font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:white; margin-bottom:4px;">Interested in a course or workshop?</div>
+        <div style="font-size:13px; color:rgba(255,255,255,0.6);">Register your interest and we will be in touch as the programme develops.</div>
+      </div>
+      <a href="#contact" class="btn btn-primary">Register interest →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CROSSROADS CAFÉ ══ -->
+<section class="cafe-section" id="cafe">
+  <div class="cafe-inner">
+    <div>
+      <div class="section-label">Community Space</div>
+      <h2 class="section-title" style="color:white;">The <em style="color:var(--amber-warm);">Crossroads</em> Café</h2>
+      <div class="divider" style="background:var(--amber-warm);"></div>
+      <p class="cafe-description">An informal peer support space — no agenda, no certificates, no formal structure. Just honest conversation about the real experience of work, with people who understand.</p>
+      <p class="cafe-description">The Crossroads Café meets both in person in Leicester and online — so wherever you are, however you work, you can join the conversation.</p>
+
+      <div class="cafe-modes">
+        <div class="cafe-mode">
+          <div class="cafe-mode-icon">📍</div>
+          <div class="cafe-mode-title">In person — Leicester</div>
+          <div class="cafe-mode-text">Regular evening sessions at a Leicester community venue. Drop in, meet people, talk openly.</div>
+        </div>
+        <div class="cafe-mode">
+          <div class="cafe-mode-icon">💻</div>
+          <div class="cafe-mode-title">Online</div>
+          <div class="cafe-mode-text">Join from anywhere. Video sessions for those who cannot attend in person or work remotely.</div>
+        </div>
+      </div>
+
+      <div class="cafe-topics-title">Recent &amp; upcoming discussion themes</div>
+      <div class="cafe-topics">
+        <span class="cafe-topic">Balancing work &amp; caring responsibilities</span>
+        <span class="cafe-topic">When work feels meaningless</span>
+        <span class="cafe-topic">Managing workload &amp; stress</span>
+        <span class="cafe-topic">Returning after illness or absence</span>
+        <span class="cafe-topic">New to management — surviving the first year</span>
+        <span class="cafe-topic">Freelance life &amp; isolation</span>
+        <span class="cafe-topic">Organisational change &amp; uncertainty</span>
+        <span class="cafe-topic">Secondary trauma in care &amp; support roles</span>
+        <span class="cafe-topic">Preparing for retirement</span>
+        <span class="cafe-topic">Career crossroads — what next?</span>
+      </div>
+
+      <a href="#contact" class="btn btn-primary" style="margin-top:28px;">Book a Crossroads Café session →</a>
+    </div>
+
+    <!-- Tips preview card -->
+    <div>
+      <div class="cafe-topics-title" style="margin-bottom:16px;">Workshop spotlight</div>
+      <div class="tips-card">
+        <div class="tips-card-title">Balancing work and caring responsibilities</div>
+        <div class="tips-card-sub">Targeted workshop — open access &amp; in-house</div>
+
+        <div class="tip-item">
+          <div class="tip-num">1</div>
+          <div class="tip-text"><strong>Name what you are carrying.</strong> Many carers do not identify as carers — which makes it harder to ask for the support that exists. The first step is naming your situation honestly.</div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-num">2</div>
+          <div class="tip-text"><strong>Know your rights.</strong> UK law provides rights to flexible working, emergency leave, and Carer's Leave. Many workers do not know they exist. We cover these practically.</div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-num">3</div>
+          <div class="tip-text"><strong>Set sustainable limits — not just limits.</strong> Sustainable boundaries are ones you can maintain. We explore what that looks like in your specific work context.</div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-num">4</div>
+          <div class="tip-text"><strong>Build a peer support network.</strong> Others in your workplace or sector are carrying similar loads. Connection reduces isolation and builds resilience.</div>
+        </div>
+      </div>
+
+      <div style="margin-top:16px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:20px 24px;">
+        <div style="font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--amber-warm); margin-bottom:8px;">More workshop topics</div>
+        <div style="font-size:13px; color:rgba(255,255,255,0.6); line-height:1.7;">Managing personal life issues at work · Understanding emotional dynamics · Contributing to psychological safety · Addressing secondary trauma · Midlife career review · Preparing for retirement</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ APP & RESOURCES ══ -->
+<section class="app-section" id="app">
+  <div class="app-inner">
+    <div>
+      <div class="section-label">App &amp; Resources</div>
+      <h2 class="section-title">Your pocket <em>companion</em> for working life</h2>
+      <div class="divider"></div>
+      <p style="font-size:15px; color:var(--slate-mid); line-height:1.8; margin-bottom:8px;">The Human Factor at Work app puts resources, peer support, and community in your pocket — available wherever you work, whenever you need it.</p>
+
+      <div class="app-features">
+        <div class="app-feature">
+          <div class="app-feature-icon">📖</div>
+          <div>
+            <div class="app-feature-title">Resource library</div>
+            <div class="app-feature-text">Tips, guides, and practical resources on every topic we cover — from managing workload stress to preparing for retirement.</div>
+          </div>
+        </div>
+        <div class="app-feature">
+          <div class="app-feature-icon">☕</div>
+          <div>
+            <div class="app-feature-title">Crossroads Café access</div>
+            <div class="app-feature-text">Book and join Crossroads Café sessions — in person or online — directly from the app.</div>
+          </div>
+        </div>
+        <div class="app-feature">
+          <div class="app-feature-icon">🗓️</div>
+          <div>
+            <div class="app-feature-title">Course booking</div>
+            <div class="app-feature-text">Browse and book workshops and courses — open access, composite cohort, or request in-house delivery for your organisation.</div>
+          </div>
+        </div>
+        <div class="app-feature">
+          <div class="app-feature-icon">📬</div>
+          <div>
+            <div class="app-feature-title">Newsletter &amp; community</div>
+            <div class="app-feature-text">Stay connected to the Human Factor at Work community — research, events, peer insights, and forum updates.</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:12px; margin-top:28px; flex-wrap:wrap;">
+        <a href="#contact" class="btn btn-primary">📱 Download the App</a>
+        <a href="#contact" class="btn" style="background:var(--teal); color:white;">📄 Download Resources</a>
+      </div>
+    </div>
+
+    <!-- Phone mockup -->
+    <div style="display:flex; justify-content:center;">
+      <div class="phone-mockup">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="phone-header">
+            <div class="phone-header-title">Human Factor <em>at Work</em></div>
+          </div>
+          <div class="phone-body">
+            <div class="phone-card">
+              <div class="phone-card-label">Today's resource</div>
+              <div class="phone-card-title">Balancing caring &amp; work</div>
+              <div class="phone-card-text">4 practical steps for this week →</div>
+            </div>
+            <div class="phone-card" style="border-left-color:var(--teal);">
+              <div class="phone-card-label" style="color:var(--teal);">Crossroads Café</div>
+              <div class="phone-card-title">Thursday 7pm — Online</div>
+              <div class="phone-card-text">Managing workload stress</div>
+            </div>
+            <div class="phone-card" style="border-left-color:var(--soft-green);">
+              <div class="phone-card-label" style="color:var(--soft-green);">Workshop</div>
+              <div class="phone-card-title">New to Management</div>
+              <div class="phone-card-text">Sat 10am · Open access · 3 places left</div>
+            </div>
+            <div class="phone-cta">Join the Community →</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ NEWSLETTER ══ -->
+<div class="newsletter-strip">
+  <div class="newsletter-text">
+    <div class="newsletter-title">Stay connected</div>
+    <div class="newsletter-sub">Sign up for the Human Factor at Work newsletter — research, events, and community updates.</div>
+  </div>
+  <div class="newsletter-form">
+    <input type="email" class="newsletter-input" placeholder="Your email address"/>
+    <button class="newsletter-btn">Subscribe</button>
+  </div>
+</div>
+
+<!-- ══ ABOUT & PARTNERS ══ -->
+<section class="about-section" id="about-lvc">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="section-label">About Us</div>
+        <h2 class="section-title">Rooted in <em>Leicester</em></h2>
+        <div class="divider"></div>
+        <p>Leicester Vaughan College is an independent higher education college established as a co-operative Community Benefit Society. Founded in 2017, our mission is to champion adult learning in Leicester and Leicestershire as a public good.</p>
+        <p>The Human Factor at Work is the most ambitious funded project we have undertaken — and it reflects everything our cooperative values stand for: caring for others, solidarity, equity, and building community through learning.</p>
+        <p>We aim to contribute to Leicester being not just a place where people work, but a genuinely good place to work and live.</p>
+
+        <div class="values-list">
+          <div class="value-item"><div class="value-dot"></div><div class="value-text"><strong>Co-operative values:</strong> caring for others, solidarity, equity, openness, self-help and social responsibility</div></div>
+          <div class="value-item"><div class="value-dot"></div><div class="value-text"><strong>Community benefit:</strong> this project serves Leicester and Leicestershire — all sectors, all career stages</div></div>
+          <div class="value-item"><div class="value-dot"></div><div class="value-text"><strong>Peer learning:</strong> knowledge is built together, not delivered from above</div></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-label">Our Partners</div>
+        <h2 class="section-title">Funded &amp; <em>supported by</em></h2>
+        <div class="divider"></div>
+        <p style="font-size:14px; color:var(--slate-mid); line-height:1.8; margin-bottom:24px;">The Human Factor at Work is funded in Year 1 by the NEBOSH Social Purpose Fund — a programme supporting initiatives that extend occupational health and safety impact to underserved communities.</p>
+
+        <div class="partner-strip">
+          <div class="partner-item">
+            <div class="partner-label">Delivered by</div>
+            <img src="data:image/png;base64,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" alt="Vaughan College Leicester" style="height:80px; width:auto; object-fit:contain;"/>
+          </div>
+          <div style="width:1px; height:60px; background:var(--cream-dark);"></div>
+          <div class="partner-item">
+            <div class="partner-label">Funded by</div>
+            <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
+              <svg width="52" height="52" viewBox="0 0 64 64" fill="none">
+                <circle cx="32" cy="32" r="22" fill="#1a3a8f" opacity="0.15"/>
+                <circle cx="32" cy="32" r="18" fill="#1a3a8f" opacity="0.25"/>
+                <circle cx="32" cy="32" r="13" fill="#1a3a8f"/>
+                <line x1="32" y1="4"  x2="32" y2="10" stroke="#1a3a8f" stroke-width="3" stroke-linecap="round"/>
+                <line x1="32" y1="54" x2="32" y2="60" stroke="#1a3a8f" stroke-width="3" stroke-linecap="round"/>
+                <line x1="4"  y1="32" x2="10" y2="32" stroke="#1a3a8f" stroke-width="3" stroke-linecap="round"/>
+                <line x1="54" y1="32" x2="60" y2="32" stroke="#1a3a8f" stroke-width="3" stroke-linecap="round"/>
+                <line x1="12" y1="12" x2="16.2" y2="16.2" stroke="#1a3a8f" stroke-width="2.5" stroke-linecap="round"/>
+                <line x1="52" y1="12" x2="47.8" y2="16.2" stroke="#1a3a8f" stroke-width="2.5" stroke-linecap="round"/>
+                <line x1="12" y1="52" x2="16.2" y2="47.8" stroke="#1a3a8f" stroke-width="2.5" stroke-linecap="round"/>
+                <line x1="52" y1="52" x2="47.8" y2="47.8" stroke="#1a3a8f" stroke-width="2.5" stroke-linecap="round"/>
+                <line x1="7"  y1="20" x2="12.5" y2="22.8" stroke="#1a3a8f" stroke-width="2" stroke-linecap="round"/>
+                <line x1="7"  y1="44" x2="12.5" y2="41.2" stroke="#1a3a8f" stroke-width="2" stroke-linecap="round"/>
+                <line x1="57" y1="20" x2="51.5" y2="22.8" stroke="#1a3a8f" stroke-width="2" stroke-linecap="round"/>
+                <line x1="57" y1="44" x2="51.5" y2="41.2" stroke="#1a3a8f" stroke-width="2" stroke-linecap="round"/>
+                <line x1="20" y1="7"  x2="22.8" y2="12.5" stroke="#1a3a8f" stroke-width="2" stroke-linecap="round"/>
+                <line x1="44" y1="7"  x2="41.2" y2="12.5" stroke="#1a3a8f" stroke-width="2" stroke-linecap="round"/>
+                <line x1="20" y1="57" x2="22.8" y2="51.5" stroke="#1a3a8f" stroke-width="2" stroke-linecap="round"/>
+                <line x1="44" y1="57" x2="41.2" y2="51.5" stroke="#1a3a8f" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="32" cy="32" r="13" fill="none" stroke="white" stroke-width="0.5" opacity="0.4"/>
+                <ellipse cx="32" cy="32" rx="8" ry="13" fill="none" stroke="white" stroke-width="0.5" opacity="0.4"/>
+                <line x1="19" y1="32" x2="45" y2="32" stroke="white" stroke-width="0.5" opacity="0.4"/>
+              </svg>
+              <div style="font-family:'DM Sans',sans-serif; font-size:14px; font-weight:700; color:#1a3a8f; letter-spacing:2px;">nebosh</div>
+              <div style="font-size:9px; color:var(--slate-light); letter-spacing:1px; text-transform:uppercase; text-align:center;">Social Purpose Fund</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT / REGISTER ══ -->
+<section class="contact-section" id="contact">
+  <div class="section-inner">
+    <div class="section-label">Get Involved</div>
+    <h2 class="section-title">Ready to take the <em>next step?</em></h2>
+    <div class="divider"></div>
+    <p style="font-size:15px; color:rgba(255,255,255,0.6); max-width:560px; line-height:1.8; margin-bottom:8px;">Whatever brings you here — curiosity, need, or a desire to build a better workplace — we want to hear from you. Choose how you would like to connect.</p>
+
+    <div class="contact-grid">
+      <a href="#" class="contact-card">
+        <div class="contact-card-icon">✦</div>
+        <div class="contact-card-title">Register <em>Interest</em></div>
+        <p class="contact-card-text">Be first to hear about courses, workshops, and Crossroads Café sessions as they launch.</p>
+        <span class="contact-card-btn">Register now</span>
+      </a>
+      <a href="#app" class="contact-card">
+        <div class="contact-card-icon">📱</div>
+        <div class="contact-card-title">Download <em>the App</em></div>
+        <p class="contact-card-text">Access resources, book sessions, and join the community from your phone or tablet.</p>
+        <span class="contact-card-btn">Get the app</span>
+      </a>
+      <a href="#cafe" class="contact-card">
+        <div class="contact-card-icon">☕</div>
+        <div class="contact-card-title">Crossroads <em>Café</em></div>
+        <p class="contact-card-text">Book a place at our next in-person or online peer support session — no experience needed.</p>
+        <span class="contact-card-btn">Book a session</span>
+      </a>
+      <a href="mailto:info@vaughan.coop" class="contact-card">
+        <div class="contact-card-icon">✉</div>
+        <div class="contact-card-title">Contact <em>the Team</em></div>
+        <p class="contact-card-text">Employers, partners, or anyone with questions — get in touch directly with the project team.</p>
+        <span class="contact-card-btn">Get in touch</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-left">
+    <strong style="color:rgba(255,255,255,0.6);">Human Factor at Work</strong><br>
+    A project of Leicester Vaughan College · Funded by NEBOSH Social Purpose Fund<br>
+    © 2026 Leicester Vaughan College Community Benefit Society · <a href="https://vaughan.coop" style="color:rgba(255,255,255,0.35); text-decoration:none;">vaughan.coop</a>
+  </div>
+  <div class="footer-right">
+    Year 1 · 2026–2027 · Reviewed March 2027
+  </div>
+</footer>
+
+</body>
+</html>
