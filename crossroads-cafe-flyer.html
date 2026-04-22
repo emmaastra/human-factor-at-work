@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crossroads Café — Human Factor at Work</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal:       #1E4E5F;
+    --teal-mid:   #2D6E84;
+    --teal-light: #4A9DB5;
+    --amber:      #C9843A;
+    --amber-warm: #E8A55A;
+    --cream:      #F7F2EA;
+    --cream-dark: #EDE5D8;
+    --slate:      #2C3440;
+    --slate-mid:  #4A5568;
+    --white:      #FFFFFF;
+    --soft-green: #5B8A6F;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #e8e4dc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    gap: 40px;
+  }
+
+  /* ── FLYER WRAPPER — A5 portrait ── */
+  .flyer {
+    width: 148mm;
+    min-height: 210mm;
+    background: var(--teal);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+  }
+
+  /* Decorative background arcs */
+  .flyer-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  /* ── TOP BAND ── */
+  .flyer-top {
+    background: var(--amber);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 2;
+  }
+
+  .flyer-top-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .flyer-top-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: white;
+    line-height: 1.2;
+  }
+
+  .flyer-top-name em { font-style: italic; }
+
+  .flyer-top-right {
+    font-size: 8px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+    text-align: right;
+    line-height: 1.5;
+  }
+
+  /* ── HERO ── */
+  .flyer-hero {
+    padding: 32px 28px 24px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .flyer-eyebrow {
+    font-size: 8px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--amber-warm);
+    font-weight: 500;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .flyer-eyebrow::before {
+    content: '';
+    width: 16px; height: 1px;
+    background: var(--amber-warm);
+    flex-shrink: 0;
+  }
+
+  .cafe-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: white;
+    line-height: 0.95;
+    letter-spacing: -2px;
+    margin-bottom: 4px;
+  }
+
+  .cafe-name-sub {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--amber-warm);
+    line-height: 0.95;
+    letter-spacing: -2px;
+    margin-bottom: 20px;
+  }
+
+  .flyer-tagline {
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.7;
+    max-width: 320px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 16px;
+    margin-top: 4px;
+  }
+
+  /* ── STEAM ICON AREA ── */
+  .flyer-icon-row {
+    display: flex;
+    justify-content: center;
+    padding: 4px 0 8px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ── WHAT IS IT ── */
+  .flyer-what {
+    margin: 0 24px 16px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 18px 20px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .flyer-what-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 8px;
+    font-style: italic;
+  }
+
+  .flyer-what-text {
+    font-size: 11.5px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.7;
+  }
+
+  /* ── TOPICS ── */
+  .flyer-topics-section {
+    padding: 0 24px 16px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .flyer-topics-label {
+    font-size: 8px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--amber-warm);
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  .flyer-topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .flyer-topic {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    font-size: 10px;
+    color: rgba(255,255,255,0.8);
+    padding: 4px 11px;
+    line-height: 1.5;
+  }
+
+  /* ── MODES ── */
+  .flyer-modes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 0 24px 16px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .flyer-mode {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 12px 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .flyer-mode-icon { font-size: 18px; flex-shrink: 0; }
+
+  .flyer-mode-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 2px;
+    line-height: 1.3;
+  }
+
+  .flyer-mode-text {
+    font-size: 9.5px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.45;
+  }
+
+  /* ── WHO ── */
+  .flyer-who {
+    margin: 0 24px 16px;
+    background: rgba(201,132,58,0.15);
+    border: 1px solid rgba(201,132,58,0.3);
+    border-radius: 10px;
+    padding: 14px 18px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .flyer-who-title {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--amber-warm);
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .flyer-who-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .flyer-who-chip {
+    background: rgba(232,165,90,0.2);
+    border: 1px solid rgba(232,165,90,0.3);
+    color: var(--amber-warm);
+    font-size: 10px;
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+
+  /* ── BOTTOM CTA ── */
+  .flyer-cta {
+    background: var(--amber);
+    padding: 18px 24px;
+    position: relative;
+    z-index: 2;
+    margin-top: auto;
+  }
+
+  .flyer-cta-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 6px;
+    font-style: italic;
+  }
+
+  .flyer-cta-details {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .flyer-cta-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .flyer-cta-icon { font-size: 13px; }
+
+  .flyer-cta-text {
+    font-size: 11px;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.4;
+  }
+
+  .flyer-cta-text strong { color: white; }
+
+  /* ── ONLINE VERSION — landscape, social-media ready ── */
+  .flyer-social {
+    width: 500px;
+    height: 500px;
+    background: var(--teal);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  }
+
+  .social-top {
+    background: var(--amber);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .social-logo-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .social-logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: white;
+    line-height: 1.2;
+  }
+
+  .social-logo-text em { font-style: italic; }
+
+  .social-tag {
+    font-size: 8px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+  }
+
+  .social-body {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 0;
+  }
+
+  .social-left {
+    padding: 24px 20px 20px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .social-right {
+    padding: 24px 24px 20px 16px;
+    background: rgba(255,255,255,0.04);
+    border-left: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .social-cafe-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: white;
+    line-height: 0.95;
+    letter-spacing: -1.5px;
+  }
+
+  .social-cafe-sub {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--amber-warm);
+    line-height: 0.95;
+    letter-spacing: -1.5px;
+    margin-bottom: 12px;
+  }
+
+  .social-tagline {
+    font-size: 11px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.6;
+    max-width: 200px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .social-cta-block {
+    background: var(--amber);
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+
+  .social-cta-text {
+    font-size: 10px;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.5;
+    margin-bottom: 4px;
+  }
+
+  .social-cta-email {
+    font-size: 11px;
+    font-weight: 600;
+    color: white;
+  }
+
+  .social-right-label {
+    font-size: 7px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--amber-warm);
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  .social-topics {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 14px;
+  }
+
+  .social-topic {
+    font-size: 10px;
+    color: rgba(255,255,255,0.7);
+    padding: 4px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .social-topic::before {
+    content: '';
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--amber-warm);
+    flex-shrink: 0;
+  }
+
+  .social-modes-row {
+    display: flex;
+    gap: 6px;
+  }
+
+  .social-mode-chip {
+    flex: 1;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px;
+    padding: 7px 8px;
+    text-align: center;
+  }
+
+  .social-mode-icon { font-size: 14px; margin-bottom: 3px; }
+
+  .social-mode-text {
+    font-size: 8.5px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.3;
+  }
+
+  /* ── VERSION LABELS ── */
+  .version-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #666;
+    text-align: center;
+    font-weight: 500;
+  }
+
+  @media print {
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    @page { margin: 8mm; size: A5 portrait; }
+    body { background: white; padding: 0; }
+    .flyer {
+      width: 100%;
+      min-height: unset;
+      box-shadow: none;
+      border-radius: 0;
+    }
+    .flyer-social, .version-label { display: none !important; }
+    * { box-shadow: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════
+     PRINT FLYER — A5
+═══════════════════════ -->
+<div class="version-label">Print version — A5 Portrait</div>
+
+<div class="flyer">
+
+  <!-- BG decorative arcs -->
+  <div class="flyer-bg">
+    <svg width="100%" height="100%" viewBox="0 0 420 595" fill="none" style="position:absolute;inset:0;opacity:0.04;">
+      <circle cx="380" cy="120" r="200" stroke="white" stroke-width="1"/>
+      <circle cx="380" cy="120" r="140" stroke="white" stroke-width="1"/>
+      <circle cx="380" cy="120" r="80"  stroke="white" stroke-width="1"/>
+      <circle cx="40"  cy="480" r="120" stroke="white" stroke-width="1"/>
+      <circle cx="40"  cy="480" r="70"  stroke="white" stroke-width="1"/>
+    </svg>
+  </div>
+
+  <!-- TOP BAND -->
+  <div class="flyer-top">
+    <div class="flyer-top-logo">
+      <svg width="28" height="30" viewBox="0 0 200 210" fill="none">
+        <path d="M 55 90 A 47 47 0 0 1 145 90" stroke="rgba(255,255,255,0.55)" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <ellipse cx="100" cy="110" rx="42" ry="46" fill="white"/>
+        <path d="M 68 128 Q 68 156 100 162 Q 132 156 132 128" fill="white"/>
+        <path d="M 84 110 Q 84 90 100 88 Q 116 90 116 110 Q 116 120 108 126 L 92 126 Q 84 120 84 110 Z" fill="#C9843A" opacity="0.9"/>
+        <rect x="91" y="126" width="18" height="5" rx="2" fill="#C9843A" opacity="0.8"/>
+        <path d="M 94 118 Q 97 112 100 116 Q 103 112 106 118" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <line x1="100" y1="85" x2="100" y2="78" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+        <line x1="113" y1="89" x2="119" y2="83" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="87"  y1="89" x2="81"  y2="83" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="100" cy="108" r="4" fill="white" opacity="0.9"/>
+      </svg>
+      <div>
+        <div class="flyer-top-name">Human Factor <em>at Work</em></div>
+        <div style="font-size:7px; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.55);">Leicester Vaughan College</div>
+      </div>
+    </div>
+    <div class="flyer-top-right">
+      Free to attend<br>All welcome
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="flyer-hero">
+    <div class="flyer-eyebrow">Peer support · Community · Conversation</div>
+    <div class="cafe-name">Crossroads</div>
+    <div class="cafe-name-sub">Café</div>
+    <p class="flyer-tagline">An informal space to talk honestly about work — no agenda, no certificates, no pressure. Just people supporting people.</p>
+  </div>
+
+  <!-- ICON ROW — coffee cup SVG -->
+  <div class="flyer-icon-row">
+    <svg width="64" height="56" viewBox="0 0 64 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Steam lines -->
+      <path d="M 20 12 Q 18 7 20 3" stroke="#E8A55A" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.6"/>
+      <path d="M 28 12 Q 26 6 28 2" stroke="#E8A55A" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.5"/>
+      <path d="M 36 12 Q 34 7 36 3" stroke="#E8A55A" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.6"/>
+      <!-- Cup body -->
+      <path d="M 10 16 L 14 44 Q 14 48 28 48 Q 42 48 42 44 L 46 16 Z" fill="white" opacity="0.15"/>
+      <path d="M 10 16 L 14 44 Q 14 48 28 48 Q 42 48 42 44 L 46 16 Z" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
+      <!-- Cup rim -->
+      <ellipse cx="28" cy="16" rx="18" ry="4" fill="white" opacity="0.2"/>
+      <ellipse cx="28" cy="16" rx="18" ry="4" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
+      <!-- Handle -->
+      <path d="M 42 22 Q 54 22 54 32 Q 54 42 42 42" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.5"/>
+      <!-- Saucer -->
+      <ellipse cx="28" cy="50" rx="24" ry="4" fill="white" opacity="0.1"/>
+      <ellipse cx="28" cy="50" rx="24" ry="4" stroke="white" stroke-width="1.2" fill="none" opacity="0.3"/>
+      <!-- Amber liquid surface -->
+      <ellipse cx="28" cy="20" rx="14" ry="3" fill="#E8A55A" opacity="0.3"/>
+    </svg>
+  </div>
+
+  <!-- WHAT IS IT -->
+  <div class="flyer-what">
+    <div class="flyer-what-title">What is the Crossroads Café?</div>
+    <p class="flyer-what-text">A regular gathering — in person in Leicester and online — where people from any workplace and any career stage come together to talk about the real experience of work. There is nothing to prepare. You just turn up and take part in honest, supportive conversation.</p>
+  </div>
+
+  <!-- TOPICS -->
+  <div class="flyer-topics-section">
+    <div class="flyer-topics-label">We talk about things like</div>
+    <div class="flyer-topics">
+      <span class="flyer-topic">Stress & workload</span>
+      <span class="flyer-topic">Caring & work</span>
+      <span class="flyer-topic">Feeling stuck</span>
+      <span class="flyer-topic">Career change</span>
+      <span class="flyer-topic">New management</span>
+      <span class="flyer-topic">Working alone</span>
+      <span class="flyer-topic">Organisational change</span>
+      <span class="flyer-topic">Retirement</span>
+      <span class="flyer-topic">Finding meaning</span>
+      <span class="flyer-topic">Life & work balance</span>
+      <span class="flyer-topic">Secondary trauma</span>
+      <span class="flyer-topic">What comes next?</span>
+    </div>
+  </div>
+
+  <!-- MODES -->
+  <div class="flyer-modes">
+    <div class="flyer-mode">
+      <div class="flyer-mode-icon">📍</div>
+      <div>
+        <div class="flyer-mode-title">In person — Leicester</div>
+        <div class="flyer-mode-text">Regular evening sessions at a central Leicester venue. Drop in — no booking needed.</div>
+      </div>
+    </div>
+    <div class="flyer-mode">
+      <div class="flyer-mode-icon">💻</div>
+      <div>
+        <div class="flyer-mode-title">Online</div>
+        <div class="flyer-mode-text">Can't make it in person? Join us from anywhere via video. Same warm welcome.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHO IS IT FOR -->
+  <div class="flyer-who">
+    <div class="flyer-who-title">Who is it for?</div>
+    <div class="flyer-who-chips">
+      <span class="flyer-who-chip">Any worker</span>
+      <span class="flyer-who-chip">Any sector</span>
+      <span class="flyer-who-chip">Managers</span>
+      <span class="flyer-who-chip">Freelancers</span>
+      <span class="flyer-who-chip">Carers in work</span>
+      <span class="flyer-who-chip">Anyone at a crossroads</span>
+    </div>
+  </div>
+
+  <!-- CTA BOTTOM -->
+  <div class="flyer-cta">
+    <div class="flyer-cta-title">Come and join us</div>
+    <div class="flyer-cta-details">
+      <div class="flyer-cta-item">
+        <div class="flyer-cta-icon">✉</div>
+        <div class="flyer-cta-text"><strong>humanfactor@vaughan.coop</strong></div>
+      </div>
+      <div class="flyer-cta-item">
+        <div class="flyer-cta-icon">🌐</div>
+        <div class="flyer-cta-text"><strong>emmaastra.github.io/human-factor-at-work</strong></div>
+      </div>
+      <div class="flyer-cta-item">
+        <div class="flyer-cta-icon">☕</div>
+        <div class="flyer-cta-text">Free to attend · All welcome · No experience needed</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ═══════════════════════
+     SOCIAL MEDIA VERSION — 500x500
+═══════════════════════ -->
+<div class="version-label">Digital / Social Media version — 500×500px</div>
+
+<div class="flyer-social">
+
+  <!-- BG arcs -->
+  <svg style="position:absolute;inset:0;opacity:0.05;pointer-events:none;" width="500" height="500" viewBox="0 0 500 500" fill="none">
+    <circle cx="420" cy="80" r="180" stroke="white" stroke-width="1"/>
+    <circle cx="420" cy="80" r="120" stroke="white" stroke-width="1"/>
+    <circle cx="80"  cy="420" r="140" stroke="white" stroke-width="1"/>
+    <circle cx="80"  cy="420" r="80"  stroke="white" stroke-width="1"/>
+  </svg>
+
+  <!-- Top band -->
+  <div class="social-top">
+    <div class="social-logo-row">
+      <svg width="28" height="30" viewBox="0 0 200 210" fill="none">
+        <path d="M 55 90 A 47 47 0 0 1 145 90" stroke="rgba(255,255,255,0.55)" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <ellipse cx="100" cy="110" rx="42" ry="46" fill="white"/>
+        <path d="M 68 128 Q 68 156 100 162 Q 132 156 132 128" fill="white"/>
+        <path d="M 84 110 Q 84 90 100 88 Q 116 90 116 110 Q 116 120 108 126 L 92 126 Q 84 120 84 110 Z" fill="#C9843A" opacity="0.9"/>
+        <rect x="91" y="126" width="18" height="5" rx="2" fill="#C9843A" opacity="0.8"/>
+        <path d="M 94 118 Q 97 112 100 116 Q 103 112 106 118" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <line x1="100" y1="85" x2="100" y2="78" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+        <circle cx="100" cy="108" r="4" fill="white" opacity="0.9"/>
+      </svg>
+      <div class="social-logo-text">Human Factor <em>at Work</em></div>
+    </div>
+    <div class="social-tag">Leicester Vaughan College</div>
+  </div>
+
+  <!-- Body -->
+  <div class="social-body">
+
+    <!-- Left -->
+    <div class="social-left">
+      <div>
+        <div style="font-size:8px; letter-spacing:3px; text-transform:uppercase; color:var(--amber-warm); margin-bottom:10px; font-weight:500;">Free peer support</div>
+        <div class="social-cafe-name">Cross</div>
+        <div class="social-cafe-name">roads</div>
+        <div class="social-cafe-sub">Café</div>
+        <p class="social-tagline">Honest conversation about work. No agenda. No pressure. Just people supporting people.</p>
+      </div>
+
+      <div class="social-cta-block">
+        <div class="social-cta-text">Get in touch to join us</div>
+        <div class="social-cta-email">humanfactor@vaughan.coop</div>
+      </div>
+    </div>
+
+    <!-- Right -->
+    <div class="social-right">
+      <div>
+        <div class="social-right-label">We talk about</div>
+        <div class="social-topics">
+          <div class="social-topic">Stress & workload</div>
+          <div class="social-topic">Work & caring</div>
+          <div class="social-topic">Career change</div>
+          <div class="social-topic">New to management</div>
+          <div class="social-topic">Finding meaning</div>
+          <div class="social-topic">Life balance</div>
+          <div class="social-topic">Retirement</div>
+          <div class="social-topic">What comes next?</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="social-right-label" style="margin-bottom:6px;">How we meet</div>
+        <div class="social-modes-row">
+          <div class="social-mode-chip">
+            <div class="social-mode-icon">📍</div>
+            <div class="social-mode-text">In person Leicester</div>
+          </div>
+          <div class="social-mode-chip">
+            <div class="social-mode-icon">💻</div>
+            <div class="social-mode-text">Online anywhere</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
