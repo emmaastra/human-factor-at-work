@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Human Factor at Work — Wellbeing Toolkit</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal:        #1E4E5F;
+    --teal-mid:    #2D6E84;
+    --teal-light:  #4A9DB5;
+    --amber:       #C9843A;
+    --amber-warm:  #E8A55A;
+    --cream:       #F7F2EA;
+    --cream-dark:  #EDE5D8;
+    --slate:       #2C3440;
+    --slate-mid:   #4A5568;
+    --slate-light: #718096;
+    --white:       #FFFFFF;
+    --green:       #5B8A6F;
+    --green-light: #7aab8a;
+    --rose:        #B8736A;
+    --sky:         #6B9FBF;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--slate);
+    line-height: 1.6;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top:0; left:0; right:0; z-index:100;
+    background: rgba(30,78,95,0.97);
+    backdrop-filter: blur(12px);
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .nav-left { display:flex; align-items:center; gap:10px; }
+
+  .nav-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px; font-weight:700; color:white; line-height:1.15;
+  }
+  .nav-name em { font-style:italic; color:var(--amber-warm); }
+  .nav-sub { font-size:7px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-top:2px; }
+
+  .nav-links { display:flex; gap:28px; list-style:none; align-items:center; }
+  .nav-links a { font-size:12px; color:rgba(255,255,255,0.6); text-decoration:none; transition:color 0.2s; }
+  .nav-links a:hover { color:white; }
+
+  .nav-back {
+    font-size:12px; color:rgba(255,255,255,0.5); text-decoration:none;
+    display:flex; align-items:center; gap:6px;
+    padding: 6px 14px; border:1px solid rgba(255,255,255,0.15); border-radius:6px;
+    transition: all 0.2s;
+  }
+  .nav-back:hover { color:white; border-color:rgba(255,255,255,0.3); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--teal);
+    display: flex;
+    align-items: center;
+    padding: 100px 64px 64px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position:absolute; inset:0; pointer-events:none; overflow:hidden;
+  }
+
+  .hero-content { max-width:580px; position:relative; z-index:2; }
+
+  .hero-label {
+    font-size:9px; letter-spacing:4px; text-transform:uppercase;
+    color:var(--amber-warm); font-weight:500; margin-bottom:18px;
+  }
+
+  .hero-title {
+    font-family:'Playfair Display', serif;
+    font-size: clamp(40px,5.5vw,66px);
+    font-weight:700; color:white; line-height:1.05;
+    letter-spacing:-1.5px; margin-bottom:10px;
+  }
+  .hero-title em { font-style:italic; color:var(--amber-warm); }
+
+  .hero-sub {
+    font-size:17px; font-weight:300;
+    color:rgba(255,255,255,0.65); line-height:1.75;
+    max-width:480px; margin-top:20px; margin-bottom:40px;
+  }
+
+  .hero-tabs {
+    display:flex; gap:10px; flex-wrap:wrap;
+  }
+
+  .hero-tab {
+    display:flex; align-items:center; gap:8px;
+    padding:10px 18px; border-radius:8px;
+    font-size:12px; font-weight:500; text-decoration:none;
+    border: 1px solid rgba(255,255,255,0.15);
+    color:rgba(255,255,255,0.8); transition:all 0.2s;
+    background:rgba(255,255,255,0.06);
+  }
+  .hero-tab:hover { background:rgba(255,255,255,0.12); color:white; }
+  .hero-tab.active { background:var(--amber); color:white; border-color:var(--amber); }
+  .hero-tab-icon { font-size:16px; }
+
+  /* Hero visual — notebook illustration */
+  .hero-visual {
+    position:absolute; right:6%; top:50%; transform:translateY(-50%);
+    z-index:2; opacity:0.9;
+  }
+
+  /* ── SHARED ── */
+  .section { padding:80px 64px; }
+  .section-inner { max-width:1040px; margin:0 auto; }
+
+  .label {
+    font-size:9px; letter-spacing:4px; text-transform:uppercase;
+    font-weight:500; margin-bottom:10px;
+  }
+  .label-amber { color:var(--amber); }
+  .label-green  { color:var(--green); }
+  .label-sky    { color:var(--sky); }
+  .label-rose   { color:var(--rose); }
+  .label-light  { color:var(--amber-warm); }
+
+  .title {
+    font-family:'Playfair Display', serif;
+    font-weight:700; line-height:1.15; margin-bottom:14px;
+  }
+  .title em { font-style:italic; }
+  .title-teal { color:var(--teal); }
+  .title-teal em { color:var(--amber); }
+  .title-white { color:white; }
+  .title-white em { color:var(--amber-warm); }
+
+  .divider { width:32px; height:3px; border-radius:2px; margin-bottom:20px; }
+  .div-amber { background:var(--amber); }
+  .div-green  { background:var(--green); }
+  .div-sky    { background:var(--sky); }
+  .div-rose   { background:var(--rose); }
+  .div-light  { background:var(--amber-warm); }
+
+  .body-text { font-size:14px; color:var(--slate-mid); line-height:1.85; margin-bottom:14px; }
+  .body-light { font-size:14px; color:rgba(255,255,255,0.65); line-height:1.85; margin-bottom:14px; }
+
+  /* ── SECTION TABS / ANCHORS ── */
+  .section-tab {
+    display:inline-flex; align-items:center; gap:8px;
+    padding:8px 16px; border-radius:20px; font-size:11px; font-weight:500;
+    margin-bottom:20px; letter-spacing:0.5px;
+  }
+  .tab-amber { background:rgba(201,132,58,0.12); color:var(--amber); border:1px solid rgba(201,132,58,0.25); }
+  .tab-green  { background:rgba(91,138,111,0.12); color:var(--green);  border:1px solid rgba(91,138,111,0.25); }
+  .tab-sky    { background:rgba(107,159,191,0.12); color:var(--sky);   border:1px solid rgba(107,159,191,0.25); }
+  .tab-rose   { background:rgba(184,115,106,0.12); color:var(--rose);  border:1px solid rgba(184,115,106,0.25); }
+
+  /* ── JOURNAL SECTION ── */
+  .journal-section { background:var(--cream); }
+
+  .journal-grid {
+    display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start;
+  }
+
+  /* Notebook mockup */
+  .notebook {
+    background:white;
+    border-radius:4px 12px 12px 4px;
+    border-left:8px solid var(--amber);
+    box-shadow:4px 4px 24px rgba(0,0,0,0.1), -2px 0 8px rgba(0,0,0,0.05);
+    overflow:hidden;
+    font-family:'Caveat', cursive;
+  }
+
+  .nb-header {
+    background:var(--amber);
+    padding:16px 24px;
+    display:flex; justify-content:space-between; align-items:center;
+  }
+
+  .nb-header-title {
+    font-family:'Playfair Display', serif;
+    font-size:16px; font-weight:700; color:white; font-style:italic;
+  }
+
+  .nb-header-date {
+    font-size:11px; color:rgba(255,255,255,0.7); letter-spacing:1px;
+  }
+
+  .nb-lines { padding:20px 28px; }
+
+  .nb-prompt {
+    font-size:11px; letter-spacing:2px; text-transform:uppercase;
+    color:var(--amber); margin-bottom:12px; font-family:'DM Sans',sans-serif;
+  }
+
+  .nb-entry {
+    font-family:'Caveat', cursive;
+    font-size:17px; color:var(--slate);
+    line-height:2.2;
+    background:repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent calc(2.2em - 1px),
+      #e8e4dc calc(2.2em - 1px),
+      #e8e4dc 2.2em
+    );
+    min-height:140px;
+    padding-bottom:8px;
+  }
+
+  .nb-footer {
+    padding:12px 28px 20px;
+    display:flex; justify-content:space-between; align-items:center;
+  }
+
+  .nb-footer-tag {
+    font-size:10px; color:var(--slate-light); letter-spacing:1px;
+    font-family:'DM Sans', sans-serif;
+  }
+
+  .nb-mood {
+    display:flex; gap:6px;
+  }
+
+  .nb-mood-dot {
+    width:10px; height:10px; border-radius:50%;
+  }
+
+  /* Journal tips */
+  .journal-tips {
+    display:flex; flex-direction:column; gap:14px;
+  }
+
+  .journal-tip {
+    background:white; border-radius:12px; padding:20px 22px;
+    border-left:4px solid var(--amber);
+    box-shadow:0 2px 10px rgba(0,0,0,0.04);
+  }
+
+  .journal-tip:nth-child(2) { border-left-color:var(--teal); }
+  .journal-tip:nth-child(3) { border-left-color:var(--green); }
+  .journal-tip:nth-child(4) { border-left-color:var(--rose); }
+  .journal-tip:nth-child(5) { border-left-color:var(--sky); }
+
+  .journal-tip-num {
+    font-family:'Playfair Display', serif;
+    font-size:11px; font-weight:700; color:var(--amber);
+    letter-spacing:1px; text-transform:uppercase; margin-bottom:4px;
+  }
+
+  .journal-tip-title {
+    font-size:14px; font-weight:600; color:var(--teal); margin-bottom:5px;
+  }
+
+  .journal-tip-text {
+    font-size:12px; color:var(--slate-mid); line-height:1.7;
+  }
+
+  /* Prompts grid */
+  .prompts-grid {
+    display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:20px;
+  }
+
+  .prompt-card {
+    background:white; border-radius:10px; padding:18px 16px;
+    border-top:3px solid var(--amber);
+    box-shadow:0 2px 10px rgba(0,0,0,0.04);
+  }
+
+  .prompt-card:nth-child(2) { border-top-color:var(--teal); }
+  .prompt-card:nth-child(3) { border-top-color:var(--green); }
+  .prompt-card:nth-child(4) { border-top-color:var(--sky); }
+  .prompt-card:nth-child(5) { border-top-color:var(--rose); }
+  .prompt-card:nth-child(6) { border-top-color:var(--amber-warm); }
+
+  .prompt-tag {
+    font-size:8px; letter-spacing:2px; text-transform:uppercase;
+    color:var(--amber); font-weight:600; margin-bottom:8px;
+  }
+
+  .prompt-text {
+    font-family:'Playfair Display', serif;
+    font-size:14px; font-style:italic; color:var(--teal); line-height:1.5;
+  }
+
+  .prompt-hint {
+    font-size:11px; color:var(--slate-light); margin-top:6px; line-height:1.5;
+  }
+
+  /* ── STRESS SECTION ── */
+  .stress-section { background:var(--slate); }
+
+  .stress-grid {
+    display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:24px;
+  }
+
+  .stress-card {
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:14px; padding:24px 20px;
+    transition:background 0.2s;
+  }
+
+  .stress-card:hover { background:rgba(255,255,255,0.09); }
+
+  .stress-icon { font-size:30px; margin-bottom:12px; }
+
+  .stress-title {
+    font-family:'Playfair Display', serif;
+    font-size:17px; font-weight:700; color:white;
+    margin-bottom:8px; line-height:1.25;
+  }
+  .stress-title em { font-style:italic; color:var(--amber-warm); }
+
+  .stress-text {
+    font-size:12px; color:rgba(255,255,255,0.6); line-height:1.7;
+    margin-bottom:12px;
+  }
+
+  .stress-steps {
+    display:flex; flex-direction:column; gap:6px;
+  }
+
+  .stress-step {
+    display:flex; gap:8px; align-items:flex-start;
+    font-size:11px; color:rgba(255,255,255,0.65); line-height:1.5;
+  }
+
+  .stress-step-dot {
+    width:5px; height:5px; border-radius:50%;
+    background:var(--amber-warm); flex-shrink:0; margin-top:5px;
+  }
+
+  /* ── OUTDOORS SECTION ── */
+  .outdoors-section { background:var(--green); }
+
+  .outdoors-grid {
+    display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:start;
+  }
+
+  .outdoors-cards {
+    display:flex; flex-direction:column; gap:12px;
+  }
+
+  .outdoors-card {
+    background:rgba(255,255,255,0.1);
+    border:1px solid rgba(255,255,255,0.15);
+    border-radius:12px; padding:18px 20px;
+    display:flex; gap:14px; align-items:flex-start;
+  }
+
+  .outdoors-icon { font-size:26px; flex-shrink:0; }
+
+  .outdoors-title {
+    font-size:14px; font-weight:600; color:white; margin-bottom:4px;
+  }
+
+  .outdoors-text {
+    font-size:12px; color:rgba(255,255,255,0.7); line-height:1.65;
+  }
+
+  /* Nature prescription box */
+  .nature-rx {
+    background:white; border-radius:14px; padding:28px;
+    box-shadow:0 4px 20px rgba(0,0,0,0.1);
+  }
+
+  .nature-rx-title {
+    font-family:'Playfair Display', serif;
+    font-size:20px; font-weight:700; color:var(--green);
+    margin-bottom:8px; font-style:italic;
+  }
+
+  .nature-rx-sub {
+    font-size:10px; letter-spacing:2px; text-transform:uppercase;
+    color:var(--slate-light); margin-bottom:16px;
+  }
+
+  .nature-rx-items {
+    display:flex; flex-direction:column; gap:10px;
+  }
+
+  .nature-rx-item {
+    display:flex; align-items:center; gap:12px;
+    padding:10px 14px; background:var(--cream); border-radius:8px;
+  }
+
+  .nature-rx-icon { font-size:18px; }
+
+  .nature-rx-text {
+    font-size:12px; color:var(--slate-mid); line-height:1.5;
+  }
+
+  .nature-rx-text strong { color:var(--teal); }
+
+  /* ── MINDFULNESS SECTION ── */
+  .mindfulness-section { background:var(--sky); }
+
+  .mindfulness-grid {
+    display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:start;
+  }
+
+  .mindful-cards {
+    display:grid; grid-template-columns:1fr 1fr; gap:12px;
+  }
+
+  .mindful-card {
+    background:rgba(255,255,255,0.15);
+    border:1px solid rgba(255,255,255,0.2);
+    border-radius:12px; padding:20px 16px;
+    text-align:center;
+  }
+
+  .mindful-icon { font-size:28px; margin-bottom:10px; }
+
+  .mindful-title {
+    font-size:13px; font-weight:600; color:white; margin-bottom:6px;
+  }
+
+  .mindful-text {
+    font-size:11px; color:rgba(255,255,255,0.7); line-height:1.6;
+  }
+
+  /* Breathing exercise */
+  .breathing-box {
+    background:rgba(255,255,255,0.1);
+    border:1px solid rgba(255,255,255,0.2);
+    border-radius:14px; padding:28px;
+  }
+
+  .breathing-title {
+    font-family:'Playfair Display', serif;
+    font-size:20px; font-weight:700; color:white;
+    margin-bottom:8px; font-style:italic;
+  }
+
+  .breathing-steps {
+    display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:16px;
+  }
+
+  .breathing-step {
+    background:rgba(255,255,255,0.1);
+    border-radius:10px; padding:14px 16px; text-align:center;
+  }
+
+  .breathing-count {
+    font-family:'Playfair Display', serif;
+    font-size:28px; font-weight:700; color:white; line-height:1;
+    margin-bottom:4px;
+  }
+
+  .breathing-action {
+    font-size:12px; color:rgba(255,255,255,0.7); font-weight:500; margin-bottom:2px;
+  }
+
+  .breathing-note {
+    font-size:10px; color:rgba(255,255,255,0.45);
+  }
+
+  /* ── RELATIONSHIPS SECTION ── */
+  .relationships-section { background:var(--cream-dark); }
+
+  .rel-grid {
+    display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:20px;
+  }
+
+  .rel-card {
+    background:white; border-radius:14px; padding:24px 20px;
+    box-shadow:0 2px 12px rgba(0,0,0,0.05);
+    border-top:4px solid var(--rose);
+  }
+
+  .rel-card:nth-child(2) { border-top-color:var(--amber); }
+  .rel-card:nth-child(3) { border-top-color:var(--teal); }
+  .rel-card:nth-child(4) { border-top-color:var(--green); }
+  .rel-card:nth-child(5) { border-top-color:var(--sky); }
+  .rel-card:nth-child(6) { border-top-color:var(--amber-warm); }
+
+  .rel-icon { font-size:28px; margin-bottom:10px; }
+
+  .rel-title {
+    font-family:'Playfair Display', serif;
+    font-size:16px; font-weight:700; color:var(--teal);
+    margin-bottom:8px; line-height:1.25;
+  }
+  .rel-title em { font-style:italic; color:var(--rose); }
+
+  .rel-text { font-size:12px; color:var(--slate-mid); line-height:1.7; }
+
+  /* ── APP / MATERIALS ── */
+  .materials-section { background:var(--teal); }
+
+  .materials-grid {
+    display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:start;
+  }
+
+  .material-cards {
+    display:flex; flex-direction:column; gap:12px;
+  }
+
+  .material-card {
+    background:rgba(255,255,255,0.07);
+    border:1px solid rgba(255,255,255,0.12);
+    border-radius:12px; padding:18px 20px;
+    display:flex; align-items:flex-start; gap:14px;
+    text-decoration:none; transition:background 0.2s;
+  }
+
+  .material-card:hover { background:rgba(255,255,255,0.12); }
+
+  .material-icon { font-size:24px; flex-shrink:0; }
+
+  .material-title { font-size:14px; font-weight:600; color:white; margin-bottom:3px; }
+
+  .material-text { font-size:12px; color:rgba(255,255,255,0.55); line-height:1.6; }
+
+  .material-tag {
+    display:inline-block;
+    background:var(--amber);
+    color:white; font-size:9px; padding:2px 8px;
+    border-radius:3px; text-transform:uppercase;
+    letter-spacing:1px; margin-top:4px;
+  }
+
+  .material-tag.green { background:var(--green); }
+  .material-tag.sky   { background:var(--sky); }
+
+  /* Phone mockup */
+  .app-phone {
+    background:var(--slate);
+    border-radius:28px; padding:20px 16px;
+    max-width:240px; margin:0 auto;
+    box-shadow:0 20px 60px rgba(0,0,0,0.3);
+  }
+
+  .app-notch {
+    width:72px; height:7px; background:rgba(255,255,255,0.12);
+    border-radius:4px; margin:0 auto 18px;
+  }
+
+  .app-screen { background:var(--cream); border-radius:16px; overflow:hidden; }
+
+  .app-screen-header { background:var(--teal); padding:14px 16px; }
+
+  .app-screen-title {
+    font-family:'Playfair Display', serif;
+    font-size:12px; font-weight:700; color:white; line-height:1.2;
+  }
+  .app-screen-title em { font-style:italic; color:var(--amber-warm); }
+
+  .app-screen-sub { font-size:8px; color:rgba(255,255,255,0.45); margin-top:2px; letter-spacing:1px; }
+
+  .app-screen-body { padding:12px; }
+
+  .app-section-label {
+    font-size:8px; letter-spacing:2px; text-transform:uppercase;
+    color:var(--amber); margin-bottom:8px; font-weight:600;
+  }
+
+  .app-entry-box {
+    background:white; border-radius:8px; padding:10px 12px;
+    border-left:3px solid var(--amber); margin-bottom:8px;
+  }
+
+  .app-entry-title { font-size:10px; font-weight:600; color:var(--teal); margin-bottom:2px; }
+
+  .app-entry-text {
+    font-family:'Caveat', cursive;
+    font-size:12px; color:var(--slate-mid); line-height:1.6;
+  }
+
+  .app-tip-row {
+    display:flex; gap:6px; margin-bottom:6px;
+  }
+
+  .app-tip-chip {
+    flex:1; background:var(--teal); color:white;
+    font-size:8px; padding:6px 8px; border-radius:6px; text-align:center;
+    line-height:1.3;
+  }
+
+  .app-tip-chip.green { background:var(--green); }
+  .app-tip-chip.sky   { background:var(--sky); }
+  .app-tip-chip.amber { background:var(--amber); }
+
+  /* ── FOOTER ── */
+  footer {
+    background:#0f2830; padding:32px 64px;
+    display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:16px;
+  }
+
+  .footer-left { font-size:11px; color:rgba(255,255,255,0.3); line-height:1.7; }
+
+  @media(max-width:900px){
+    nav { padding:0 20px; }
+    .nav-links { display:none; }
+    .hero { padding:90px 28px 48px; }
+    .hero-visual { display:none; }
+    .section { padding:56px 28px; }
+    .journal-grid, .outdoors-grid, .mindfulness-grid, .materials-grid { grid-template-columns:1fr; }
+    .stress-grid, .rel-grid, .prompts-grid { grid-template-columns:1fr 1fr; }
+    .mindful-cards { grid-template-columns:1fr 1fr; }
+    .breathing-steps { grid-template-columns:1fr 1fr; }
+    footer { padding:28px; flex-direction:column; text-align:center; }
+  }
+
+  @media print {
+    * { -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+    nav, .hero-visual { display:none; }
+    body { padding:0; }
+    .hero { min-height:unset; padding:48px; }
+    .section { padding:40px 48px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <div class="nav-left">
+    <svg width="30" height="32" viewBox="0 0 200 210" fill="none">
+      <path d="M 55 90 A 47 47 0 0 1 145 90" stroke="rgba(255,255,255,0.55)" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <ellipse cx="100" cy="110" rx="42" ry="46" fill="white"/>
+      <path d="M 68 128 Q 68 156 100 162 Q 132 156 132 128" fill="white"/>
+      <path d="M 84 110 Q 84 90 100 88 Q 116 90 116 110 Q 116 120 108 126 L 92 126 Q 84 120 84 110 Z" fill="#1E4E5F" opacity="0.9"/>
+      <path d="M 94 118 Q 97 112 100 116 Q 103 112 106 118" stroke="#E8A55A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <line x1="100" y1="85" x2="100" y2="78" stroke="#C9843A" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="100" cy="108" r="5" fill="#C9843A"/>
+    </svg>
+    <div>
+      <div class="nav-name">Human Factor <em>at Work</em></div>
+      <div class="nav-sub">Wellbeing Toolkit</div>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#journal">Journal Writing</a></li>
+    <li><a href="#stress">Stress</a></li>
+    <li><a href="#outdoors">Outdoors</a></li>
+    <li><a href="#mindfulness">Mindfulness</a></li>
+    <li><a href="#relationships">Relationships</a></li>
+    <li><a href="#materials">Resources</a></li>
+  </ul>
+  <a href="index.html" class="nav-back">← Back to project</a>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-bg">
+    <svg width="100%" height="100%" viewBox="0 0 1200 800" fill="none" style="position:absolute;inset:0;opacity:0.04;">
+      <circle cx="900" cy="300" r="300" stroke="white" stroke-width="1"/>
+      <circle cx="900" cy="300" r="200" stroke="white" stroke-width="1"/>
+      <circle cx="200" cy="600" r="200" stroke="white" stroke-width="1"/>
+    </svg>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-label">Human Factor at Work · Wellbeing Toolkit</div>
+    <h1 class="hero-title">Small practices.<br><em>Real difference.</em></h1>
+    <p class="hero-sub">A practical toolkit for psychological wellbeing at work — journal writing, stress reduction, time outdoors, mindfulness, and the relationships that sustain us. Use it digitally, print it out, or keep a paper journal alongside it.</p>
+
+    <div class="hero-tabs">
+      <a href="#journal" class="hero-tab active">
+        <span class="hero-tab-icon">📓</span> Journal Writing
+      </a>
+      <a href="#stress" class="hero-tab">
+        <span class="hero-tab-icon">🧘</span> Stress Tips
+      </a>
+      <a href="#outdoors" class="hero-tab">
+        <span class="hero-tab-icon">🌿</span> Outdoors
+      </a>
+      <a href="#mindfulness" class="hero-tab">
+        <span class="hero-tab-icon">🌬️</span> Mindfulness
+      </a>
+      <a href="#relationships" class="hero-tab">
+        <span class="hero-tab-icon">🤝</span> Relationships
+      </a>
+    </div>
+  </div>
+
+  <!-- Notebook illustration -->
+  <div class="hero-visual">
+    <svg width="320" height="360" viewBox="0 0 320 360" fill="none">
+      <!-- Notebook spine -->
+      <rect x="40" y="40" width="240" height="280" rx="6" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+      <rect x="40" y="40" width="16" height="280" rx="3" fill="var(--amber)" opacity="0.7"/>
+      <!-- Lines -->
+      <line x1="68" y1="80"  x2="268" y2="80"  stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+      <line x1="68" y1="104" x2="268" y2="104" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+      <line x1="68" y1="128" x2="268" y2="128" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+      <line x1="68" y1="152" x2="268" y2="152" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+      <line x1="68" y1="176" x2="268" y2="176" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+      <line x1="68" y1="200" x2="268" y2="200" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+      <line x1="68" y1="224" x2="268" y2="224" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+      <line x1="68" y1="248" x2="268" y2="248" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+      <line x1="68" y1="272" x2="268" y2="272" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+      <!-- Handwriting lines -->
+      <line x1="68" y1="80"  x2="220" y2="80"  stroke="rgba(255,255,255,0.35)" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="68" y1="104" x2="245" y2="104" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="68" y1="128" x2="200" y2="128" stroke="rgba(255,255,255,0.3)"  stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="68" y1="152" x2="230" y2="152" stroke="rgba(255,255,255,0.2)"  stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="68" y1="176" x2="190" y2="176" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" stroke-linecap="round"/>
+      <!-- Amber underline -->
+      <line x1="68" y1="176" x2="190" y2="176" stroke="var(--amber-warm)" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+      <!-- Pen -->
+      <rect x="252" y="60" width="8" height="100" rx="4" fill="var(--amber-warm)" opacity="0.8" transform="rotate(15 256 110)"/>
+      <polygon points="252,155 260,155 256,170" fill="var(--amber)" opacity="0.8" transform="rotate(15 256 160)"/>
+    </svg>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     JOURNAL WRITING
+══════════════════════════════════ -->
+<section class="section journal-section" id="journal">
+  <div class="section-inner">
+    <div class="section-tab tab-amber">📓 Journal Writing for Wellbeing</div>
+    <div class="journal-grid">
+      <div>
+        <div class="label label-amber">Writing as a Wellbeing Practice</div>
+        <h2 class="title title-teal" style="font-size:32px;">Why <em>writing it down</em> helps</h2>
+        <div class="divider div-amber"></div>
+        <p class="body-text">Keeping a journal is one of the most evidence-supported practices for psychological wellbeing. Writing about your experiences — especially difficult ones — helps you process emotions, find meaning, and develop a clearer understanding of what you need. It does not have to be eloquent, long, or even grammatically correct. It just has to be honest.</p>
+        <p class="body-text">For people navigating the pressures of working life — stress, change, difficult relationships, unclear boundaries between work and home — a regular writing practice creates a space that belongs entirely to you. No performance. No audience. Just thinking on paper.</p>
+        <p class="body-text">You can use this toolkit digitally (type directly into the app or a document), or you may prefer a physical paper journal — there is good evidence that handwriting activates different cognitive processes than typing. Both are valid. Both work.</p>
+
+        <div class="journal-tips" style="margin-top:28px;">
+          <div class="journal-tip">
+            <div class="journal-tip-num">Tip 01</div>
+            <div class="journal-tip-title">Start with five minutes, not fifty</div>
+            <div class="journal-tip-text">The biggest barrier to journalling is thinking it has to be a long, serious undertaking. Set a timer for five minutes. Write whatever comes. Stop when the timer goes. Build from there only if you want to.</div>
+          </div>
+          <div class="journal-tip">
+            <div class="journal-tip-num">Tip 02</div>
+            <div class="journal-tip-title">Don't edit — write first, reflect later</div>
+            <div class="journal-tip-text">A journal is not a piece of writing. It is thinking. Let yourself write badly, incompletely, contradictorily. The value is in the process of getting things out of your head and onto the page, not in the quality of the prose.</div>
+          </div>
+          <div class="journal-tip">
+            <div class="journal-tip-num">Tip 03</div>
+            <div class="journal-tip-title">Use prompts when you feel stuck</div>
+            <div class="journal-tip-text">On days when you sit down and nothing comes, use one of the prompts below as a starting point. A prompt is just a door — you can walk through it and immediately go in a completely different direction.</div>
+          </div>
+          <div class="journal-tip">
+            <div class="journal-tip-num">Tip 04</div>
+            <div class="journal-tip-title">Try different forms</div>
+            <div class="journal-tip-text">A journal entry doesn't have to be prose paragraphs. Try lists (things I noticed today, things that drained me, things that gave me energy). Try a letter to your past self. Try a description of a moment in detail. Try writing what you wish you had said in a difficult conversation.</div>
+          </div>
+          <div class="journal-tip">
+            <div class="journal-tip-num">Tip 05</div>
+            <div class="journal-tip-title">Review occasionally — but gently</div>
+            <div class="journal-tip-text">Reading back through older entries after some weeks can reveal patterns you couldn't see in the moment. What keeps coming up? What has shifted? What do you need that you aren't yet giving yourself? Approach this with curiosity, not judgement.</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <!-- Notebook mockup -->
+        <div class="notebook">
+          <div class="nb-header">
+            <div class="nb-header-title">My Work Journal</div>
+            <div class="nb-header-date">Today's date</div>
+          </div>
+          <div class="nb-lines">
+            <div class="nb-prompt">Today's prompt</div>
+            <div class="nb-entry">What took up most of my mental energy today — and was that where I actually wanted it to go?</div>
+          </div>
+          <div class="nb-footer">
+            <div class="nb-footer-tag">Human Factor at Work · Digital Journal</div>
+            <div class="nb-mood">
+              <div class="nb-mood-dot" style="background:#5B8A6F;"></div>
+              <div class="nb-mood-dot" style="background:#E8A55A;"></div>
+              <div class="nb-mood-dot" style="background:#B8736A; opacity:0.4;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prompts grid -->
+        <div style="margin-top:28px;">
+          <div class="label label-amber" style="margin-bottom:10px;">Writing prompts for work &amp; wellbeing</div>
+          <div class="prompts-grid">
+            <div class="prompt-card">
+              <div class="prompt-tag">Morning</div>
+              <div class="prompt-text">"What am I carrying into work today that has nothing to do with work?"</div>
+              <div class="prompt-hint">A gentle check-in before the day begins.</div>
+            </div>
+            <div class="prompt-card">
+              <div class="prompt-tag">Energy</div>
+              <div class="prompt-text">"What gave me energy today — and what took it away?"</div>
+              <div class="prompt-hint">Useful for identifying patterns over time.</div>
+            </div>
+            <div class="prompt-card">
+              <div class="prompt-tag">Boundaries</div>
+              <div class="prompt-text">"Where did I say yes when I wanted to say no — and why?"</div>
+              <div class="prompt-hint">For anyone working on setting limits.</div>
+            </div>
+            <div class="prompt-card">
+              <div class="prompt-tag">Transition</div>
+              <div class="prompt-text">"What am I holding onto from a previous role or job that isn't serving me anymore?"</div>
+              <div class="prompt-hint">For anyone navigating change.</div>
+            </div>
+            <div class="prompt-card">
+              <div class="prompt-tag">Meaning</div>
+              <div class="prompt-text">"What would make my work feel more meaningful — even in a small way?"</div>
+              <div class="prompt-hint">A slow-burn prompt worth returning to.</div>
+            </div>
+            <div class="prompt-card">
+              <div class="prompt-tag">Evening</div>
+              <div class="prompt-text">"Three things that happened today — one difficult, one ordinary, one good."</div>
+              <div class="prompt-hint">A simple daily closing practice.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     STRESS REDUCTION
+══════════════════════════════════ -->
+<section class="section stress-section" id="stress">
+  <div class="section-inner">
+    <div class="section-tab tab-rose" style="background:rgba(184,115,106,0.15); color:var(--rose); border:1px solid rgba(184,115,106,0.3);">🧘 Practical Stress Reduction</div>
+    <div class="label label-light">When work feels overwhelming</div>
+    <h2 class="title title-white" style="font-size:32px;">Small things that <em>actually help</em></h2>
+    <div class="divider div-light"></div>
+    <p class="body-light" style="max-width:640px; margin-bottom:32px;">Stress at work is real, common, and — within limits — manageable. These are not cures or solutions to systemic problems. They are small, evidence-based practices that help regulate your nervous system, shift your perspective, and reduce the immediate experience of overwhelm.</p>
+
+    <div class="stress-grid">
+      <div class="stress-card">
+        <div class="stress-icon">🫁</div>
+        <h3 class="stress-title">The <em>physiological sigh</em></h3>
+        <p class="stress-text">The fastest known way to reduce stress in real time. Two short inhales through the nose, then one long exhale through the mouth. Repeat two or three times. Your nervous system responds within seconds.</p>
+        <div class="stress-steps">
+          <div class="stress-step"><div class="stress-step-dot"></div><span>Inhale through nose — short sharp breath</span></div>
+          <div class="stress-step"><div class="stress-step-dot"></div><span>Second short inhale on top of the first</span></div>
+          <div class="stress-step"><div class="stress-step-dot"></div><span>Long, slow exhale through the mouth</span></div>
+          <div class="stress-step"><div class="stress-step-dot"></div><span>Repeat 2–3 times. Notice the shift.</span></div>
+        </div>
+      </div>
+
+      <div class="stress-card">
+        <div class="stress-icon">📋</div>
+        <h3 class="stress-title">The <em>brain dump</em></h3>
+        <p class="stress-text">When your mind is spinning with everything you need to do, your brain cannot process or prioritise. A brain dump takes all of it out of your head and onto paper — reducing the cognitive load immediately.</p>
+        <div class="stress-steps">
+          <div class="stress-step"><div class="stress-step-dot"></div><span>Take a blank page (paper or screen)</span></div>
+          <div class="stress-step"><div class="stress-step-dot"></div><span>Write everything in your head — no order, no filter</span></div>
+          <div class="stress-step"><div class="stress-step-dot"></div><span>Just one thing needs to happen next — circle it</span></div>
+          <div class="stress-step"><div class="stress-step-dot"></div><span>Leave the rest. It is on the page now, not in your head.</span></div>
+        </div>
+      </div>
+
+      <div class="stress-card">
+        <div class="stress-icon">🧊</div>
+        <h3 class="stress-title">The <em>5-4-3-2-1</em> grounding technique</h3>
+        <p class="stress-text">When anxiety is high and your thoughts are spiralling, grounding brings you back to the present moment through your senses. Useful in meetings, before difficult conversations, or after a hard moment.</p>
+        <div class="stress-steps">
+          <div class="stress-step"><div class="stress-step-dot"></div><span><strong style="color:white;">5</strong> things you can see right now</span></div>
+          <div class="stress-step"><div class="stress-step-dot"></div><span><strong style="color:white;">4</strong> things you can physically feel</span></div>
+          <div class="stress-step"><div class="stress-step-dot"></div><span><strong style="color:white;">3</strong> things you can hear</span></div>
+          <div class="stress-step"><div class="stress-step-dot"></div><span><strong style="color:white;">2</strong> things you can smell</span></div>
+          <div class="stress-step"><div class="stress-step-dot"></div><span><strong style="color:white;">1</strong> thing you can taste</span></div>
+        </div>
+      </div>
+
+      <div class="stress-card">
+        <div class="stress-icon">🚶</div>
+        <h3 class="stress-title">The <em>micro-break</em></h3>
+        <p class="stress-text">Research consistently shows that brief breaks — even 5 minutes — restore concentration and reduce the physiological effects of stress. The key is to genuinely stop, not to check your phone.</p>
+        <div class="stress-steps">
+          <div class="stress-step"><div class="stress-step-dot"></div><span>Step away from your screen entirely</span></div>
+          <div class="stress-step"><div class="stress-step-dot"></div><span>Move your body — stand, stretch, walk</span></div>
+          <div class="stress-step"><div class="stress-step-dot"></div><span>Look at something distant (rests eye muscles)</span></div>
+          <div class="stress-step"><div class="stress-step-dot"></div><span>Do not check your phone during the break</span></div>
+        </div>
+      </div>
+
+      <div class="stress-card">
+        <div class="stress-icon">✍️</div>
+        <h3 class="stress-title">Name what you are <em>feeling</em></h3>
+        <p class="stress-text">Neuroscience research shows that naming an emotion reduces its intensity. The act of labelling — "I am feeling anxious" or "I am angry about this" — activates the prefrontal cortex and reduces the amygdala's stress response.</p>
+        <div class="stress-steps">
+          <div class="stress-step"><div class="stress-step-dot"></div><span>Pause and ask: what am I actually feeling?</span></div>
+          <div class="stress-step"><div class="stress-step-dot"></div><span>Name it specifically — not just "bad" or "stressed"</span></div>
+          <div class="stress-step"><div class="stress-step-dot"></div><span>Write it down if possible — even one word</span></div>
+          <div class="stress-step"><div class="stress-step-dot"></div><span>Notice whether naming it shifts anything</span></div>
+        </div>
+      </div>
+
+      <div class="stress-card">
+        <div class="stress-icon">🔋</div>
+        <h3 class="stress-title">Protect your <em>recovery time</em></h3>
+        <p class="stress-text">Stress is not the problem — insufficient recovery is. The body and mind can handle significant stress if recovery is built in. Recovery does not mean doing nothing; it means doing something genuinely restorative for you specifically.</p>
+        <div class="stress-steps">
+          <div class="stress-step"><div class="stress-step-dot"></div><span>Identify what genuinely restores you (not what should)</span></div>
+          <div class="stress-step"><div class="stress-step-dot"></div><span>Schedule it — recovery doesn't happen by accident</span></div>
+          <div class="stress-step"><div class="stress-step-dot"></div><span>Guard it as non-negotiable where possible</span></div>
+          <div class="stress-step"><div class="stress-step-dot"></div><span>Notice the difference in how you feel after</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     OUTDOORS & NATURE
+══════════════════════════════════ -->
+<section class="section outdoors-section" id="outdoors">
+  <div class="section-inner">
+    <div class="section-tab tab-green" style="background:rgba(255,255,255,0.15); color:white; border:1px solid rgba(255,255,255,0.25);">🌿 Getting Outside</div>
+    <div class="outdoors-grid">
+      <div>
+        <div class="label" style="color:rgba(255,255,255,0.6);">Nature, Movement & Fresh Air</div>
+        <h2 class="title title-white" style="font-size:32px;">The outdoors is <em>medicine</em></h2>
+        <div class="divider" style="background:rgba(255,255,255,0.5);"></div>
+        <p class="body-light">There is strong evidence that time outdoors — even brief exposure to natural light, green space, or simply fresh air — reduces cortisol levels, improves mood, and restores the directed attention that desk work depletes. You do not need to go far or have much time.</p>
+        <p class="body-light">Walking, in particular, has a unique relationship with psychological processing. Many people find that problems they could not solve sitting down become clearer on a walk. There is a physiological reason for this — bilateral movement (the alternating left-right motion of walking) supports the brain's processing of difficult experiences.</p>
+
+        <div class="outdoors-cards" style="margin-top:24px;">
+          <div class="outdoors-card">
+            <div class="outdoors-icon">🌅</div>
+            <div>
+              <div class="outdoors-title">The morning outdoor reset</div>
+              <div class="outdoors-text">10 minutes of natural morning light — ideally before screens — regulates your circadian rhythm, improves sleep, and sets a calmer neurological tone for the day. A short walk before work is one of the highest-return wellbeing investments you can make.</div>
+            </div>
+          </div>
+          <div class="outdoors-card">
+            <div class="outdoors-icon">🚶‍♀️</div>
+            <div>
+              <div class="outdoors-title">The lunchtime walk</div>
+              <div class="outdoors-text">Even 15 minutes of walking at lunchtime significantly improves afternoon concentration and reduces end-of-day fatigue. Walk without your phone if you can. Notice what you see. Let your mind wander rather than scroll.</div>
+            </div>
+          </div>
+          <div class="outdoors-card">
+            <div class="outdoors-icon">🌳</div>
+            <div>
+              <div class="outdoors-title">Green space & the nervous system</div>
+              <div class="outdoors-text">Time in green spaces — parks, gardens, tree-lined streets — has been shown to reduce blood pressure, lower cortisol, and shift brain activity away from the ruminative default mode network. Leicester has parks and green spaces across the city. Use them.</div>
+            </div>
+          </div>
+          <div class="outdoors-card">
+            <div class="outdoors-icon">💨</div>
+            <div>
+              <div class="outdoors-title">Fresh air as a micro-break</div>
+              <div class="outdoors-text">Open a window. Step outside for two minutes. The change in air, light, and sensory environment is enough to interrupt the stress loop. You do not need a park. You need a doorstep, a window, a fire escape.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nature-rx">
+        <div class="nature-rx-title">Nature Prescription</div>
+        <div class="nature-rx-sub">Your weekly outdoor wellbeing plan</div>
+        <div class="nature-rx-items">
+          <div class="nature-rx-item">
+            <div class="nature-rx-icon">☀️</div>
+            <div class="nature-rx-text"><strong>Every morning:</strong> 10 mins natural light before screens if possible</div>
+          </div>
+          <div class="nature-rx-item">
+            <div class="nature-rx-icon">🥾</div>
+            <div class="nature-rx-text"><strong>Every work day:</strong> A lunchtime walk — even 10 minutes without your phone</div>
+          </div>
+          <div class="nature-rx-item">
+            <div class="nature-rx-icon">🌿</div>
+            <div class="nature-rx-text"><strong>Twice a week:</strong> A longer walk in a park or green space — 20–30 mins</div>
+          </div>
+          <div class="nature-rx-item">
+            <div class="nature-rx-icon">👁️</div>
+            <div class="nature-rx-text"><strong>Every hour at a screen:</strong> Look out of a window at something distant for 20 seconds</div>
+          </div>
+          <div class="nature-rx-item">
+            <div class="nature-rx-icon">🌧️</div>
+            <div class="nature-rx-text"><strong>In all weathers:</strong> Fresh air has the same benefit in rain as in sunshine. Dress for it.</div>
+          </div>
+          <div class="nature-rx-item">
+            <div class="nature-rx-icon">📓</div>
+            <div class="nature-rx-text"><strong>Walking journal:</strong> After a walk, write for 5 minutes. What came up? What shifted?</div>
+          </div>
+        </div>
+        <div style="margin-top:20px; background:var(--cream); border-radius:8px; padding:14px 16px;">
+          <div style="font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--green); margin-bottom:4px; font-weight:600;">Leicester green spaces</div>
+          <div style="font-size:12px; color:var(--slate-mid); line-height:1.6;">Victoria Park · Spinney Hills Park · Abbey Park · Watermead Country Park · Braunstone Park · Western Park — all free, all within reach of the city centre.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     MINDFULNESS
+══════════════════════════════════ -->
+<section class="section mindfulness-section" id="mindfulness">
+  <div class="section-inner">
+    <div class="section-tab tab-sky" style="background:rgba(255,255,255,0.15); color:white; border:1px solid rgba(255,255,255,0.25);">🌬️ Mindfulness at Work</div>
+    <div class="mindfulness-grid">
+      <div>
+        <div class="label" style="color:rgba(255,255,255,0.6);">Present-moment awareness</div>
+        <h2 class="title title-white" style="font-size:32px;">Mindfulness is not <em>emptying your mind</em></h2>
+        <div class="divider" style="background:rgba(255,255,255,0.5);"></div>
+        <p class="body-light">The most common misconception about mindfulness is that it means stopping your thoughts. It doesn't. Mindfulness means noticing your thoughts — observing them without being pulled along by them. You cannot empty your mind. You can learn to watch it.</p>
+        <p class="body-light">For people in demanding working environments, mindfulness is not about achieving a zen state. It is about building the capacity to pause between stimulus and response — to notice what is happening internally before reacting. That pause is where choice lives.</p>
+
+        <div class="mindful-cards" style="margin-top:24px;">
+          <div class="mindful-card">
+            <div class="mindful-icon">⏸️</div>
+            <div class="mindful-title">The one-minute pause</div>
+            <div class="mindful-text">Before a meeting, a difficult email, or a stressful task — stop for 60 seconds. Notice your breath. Notice your body. Then proceed.</div>
+          </div>
+          <div class="mindful-card">
+            <div class="mindful-icon">☕</div>
+            <div class="mindful-title">The mindful cup</div>
+            <div class="mindful-text">Drink one cup of tea or coffee a day without doing anything else. Just drinking. A tiny act of complete presence.</div>
+          </div>
+          <div class="mindful-card">
+            <div class="mindful-icon">🦶</div>
+            <div class="mindful-title">Feet on the floor</div>
+            <div class="mindful-text">In any stressful moment — feel the floor under your feet. Press down gently. This simple grounding act activates the parasympathetic nervous system.</div>
+          </div>
+          <div class="mindful-card">
+            <div class="mindful-icon">📵</div>
+            <div class="mindful-title">Single-tasking</div>
+            <div class="mindful-text">Do one thing at a time. When you notice your attention drifting, gently bring it back. This is not a failure — it is the practice itself.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="breathing-box">
+        <div class="breathing-title">Box Breathing — a 4-minute reset</div>
+        <p style="font-size:13px; color:rgba(255,255,255,0.65); line-height:1.7; margin-bottom:16px;">Used by emergency responders, athletes, and anyone who needs to regulate quickly under pressure. Four counts in, hold, out, hold. Repeat for four cycles.</p>
+
+        <div class="breathing-steps">
+          <div class="breathing-step">
+            <div class="breathing-count">4</div>
+            <div class="breathing-action">Inhale slowly</div>
+            <div class="breathing-note">Through the nose, filling the belly first</div>
+          </div>
+          <div class="breathing-step">
+            <div class="breathing-count">4</div>
+            <div class="breathing-action">Hold</div>
+            <div class="breathing-note">Gently — no tension, just stillness</div>
+          </div>
+          <div class="breathing-step">
+            <div class="breathing-count">4</div>
+            <div class="breathing-action">Exhale slowly</div>
+            <div class="breathing-note">Through the mouth, emptying fully</div>
+          </div>
+          <div class="breathing-step">
+            <div class="breathing-count">4</div>
+            <div class="breathing-action">Hold empty</div>
+            <div class="breathing-note">Rest here before the next inhale</div>
+          </div>
+        </div>
+
+        <div style="margin-top:20px; background:rgba(255,255,255,0.1); border-radius:8px; padding:14px 16px;">
+          <div style="font-size:11px; color:rgba(255,255,255,0.7); line-height:1.7;">Repeat this cycle <strong style="color:white;">4 times</strong>. Takes under 4 minutes. Works anywhere — at your desk, in a toilet cubicle, in your car before walking into work. No one needs to know you're doing it.</div>
+        </div>
+
+        <div style="margin-top:14px;">
+          <div style="font-size:9px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.45); margin-bottom:10px;">Journal prompt after breathing</div>
+          <div style="font-family:'Caveat',cursive; font-size:16px; color:rgba(255,255,255,0.7); line-height:1.6; background:rgba(255,255,255,0.06); padding:12px 16px; border-radius:8px; border-left:3px solid var(--amber-warm);">"After those four minutes, what do I notice? What feels different, even slightly?"</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     RELATIONSHIPS AT WORK
+══════════════════════════════════ -->
+<section class="section relationships-section" id="relationships">
+  <div class="section-inner">
+    <div class="section-tab tab-rose">🤝 Relationships &amp; Connection</div>
+    <div class="label label-rose">The human factor in your working relationships</div>
+    <h2 class="title title-teal" style="font-size:32px;">We are not separate from the <em>people</em> we work with</h2>
+    <div class="divider div-rose"></div>
+    <p class="body-text" style="max-width:680px; margin-bottom:8px;">Working relationships are one of the most significant factors in psychological health at work. Not just whether you like your colleagues, but whether you feel seen, respected, able to speak, and genuinely connected. Poor relationships are one of the top drivers of work-related stress. Good ones are protective even in demanding conditions.</p>
+
+    <div class="rel-grid">
+      <div class="rel-card">
+        <div class="rel-icon">👂</div>
+        <h3 class="rel-title">The art of <em>listening</em></h3>
+        <p class="rel-text">Most of us listen to respond, not to understand. Try listening for one conversation today with the sole aim of understanding the other person — without planning your reply while they speak. Notice what you hear that you would otherwise have missed.</p>
+      </div>
+      <div class="rel-card">
+        <div class="rel-icon">🗣️</div>
+        <h3 class="rel-title">Saying the <em>difficult thing</em> kindly</h3>
+        <p class="rel-text">Avoiding difficult conversations is not kindness — it builds resentment and makes the eventual conversation harder. Try: "I want to talk about something that feels a bit uncomfortable, because I think our working relationship matters." Then say it.</p>
+      </div>
+      <div class="rel-card">
+        <div class="rel-icon">🙏</div>
+        <h3 class="rel-title">Genuine <em>appreciation</em></h3>
+        <p class="rel-text">Tell someone specifically what they did that made a difference — not "good work" but "when you stepped in during that meeting, it genuinely helped me." Specific, observed appreciation is one of the cheapest and most powerful wellbeing interventions that exists.</p>
+      </div>
+      <div class="rel-card">
+        <div class="rel-icon">🚧</div>
+        <h3 class="rel-title">Boundaries as <em>care</em></h3>
+        <p class="rel-text">Setting a boundary is not aggressive or unkind — it is a communication that allows a relationship to be sustainable. "I can't take on more this week" is a complete sentence. Practice saying it without over-explaining or apologising for it.</p>
+      </div>
+      <div class="rel-card">
+        <div class="rel-icon">🔄</div>
+        <h3 class="rel-title">Repairing after <em>rupture</em></h3>
+        <p class="rel-text">Every working relationship encounters friction. What distinguishes healthy from unhealthy relationships is not the absence of conflict but the presence of repair — the willingness to come back, acknowledge what happened, and move forward. Repair does not require perfection. It requires honesty and a desire to continue.</p>
+      </div>
+      <div class="rel-card">
+        <div class="rel-icon">🌐</div>
+        <h3 class="rel-title">Building your <em>peer network</em></h3>
+        <p class="rel-text">Isolation at work — whether physical, hierarchical, or emotional — is a significant risk factor for poor psychological health. Invest in at least one peer relationship outside your immediate team: someone in another organisation, another sector, or the Crossroads Café community. Shared experience across difference is uniquely sustaining.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     APP & MATERIALS
+══════════════════════════════════ -->
+<section class="section materials-section" id="materials">
+  <div class="section-inner">
+    <div class="materials-grid">
+      <div>
+        <div class="label label-light">App &amp; Resources</div>
+        <h2 class="title title-white" style="font-size:32px;">Use this toolkit your <em>own way</em></h2>
+        <div class="divider div-light"></div>
+        <p class="body-light">Everything in this toolkit can be used digitally — on the app, in a browser, on any device. Or print it out and work with it on paper. Or both. There is no single right way to use these tools.</p>
+
+        <div class="material-cards" style="margin-top:24px;">
+          <a href="#journal" class="material-card">
+            <div class="material-icon">📓</div>
+            <div>
+              <div class="material-title">Digital Journal</div>
+              <div class="material-text">Use the app to write daily entries, work through prompts, and track patterns over time.</div>
+              <div class="material-tag">In the app</div>
+            </div>
+          </a>
+          <a href="#" class="material-card">
+            <div class="material-icon">🖨️</div>
+            <div>
+              <div class="material-title">Printable Journal Pages</div>
+              <div class="material-text">Download and print lined journal pages with prompts — for use in a physical notebook.</div>
+              <div class="material-tag green">Download free</div>
+            </div>
+          </a>
+          <a href="#" class="material-card">
+            <div class="material-icon">📖</div>
+            <div>
+              <div class="material-title">Recommended Reading</div>
+              <div class="material-text">A curated list of books, articles, and resources on journal writing, psychological health, and working life — all accessible, most free.</div>
+              <div class="material-tag sky">Resource list</div>
+            </div>
+          </a>
+          <a href="crossroads-cafe-flyer.html" class="material-card">
+            <div class="material-icon">☕</div>
+            <div>
+              <div class="material-title">Join the Crossroads Café</div>
+              <div class="material-text">Bring any of these practices — or your questions about them — to our peer support space. In person and online.</div>
+              <div class="material-tag">Free sessions</div>
+            </div>
+          </a>
+        </div>
+
+        <div style="background:var(--amber); border-radius:12px; padding:22px 26px; margin-top:16px;">
+          <div style="font-size:14px; font-weight:600; color:white; margin-bottom:6px;">Paper journals &amp; writing materials</div>
+          <p style="font-size:13px; color:rgba(255,255,255,0.85); line-height:1.7; margin-bottom:12px;">A physical journal can be a powerful complement to digital practice. Any notebook works — but if you are looking for recommendations, look for blank or dotted paper rather than lined (more freedom), a cover that feels good to hold, and a pen that writes smoothly. The object matters more than you might think.</p>
+          <p style="font-size:12px; color:rgba(255,255,255,0.7); line-height:1.6;"><strong style="color:white;">Leicester independent stationers:</strong> Character &amp; Friends on Granby St · The Works on Gallowtree Gate · Ryman on Belvoir St — all carry journals, notebooks, and writing materials at accessible prices.</p>
+        </div>
+      </div>
+
+      <!-- Phone mockup -->
+      <div style="display:flex; justify-content:center; align-items:flex-start; padding-top:20px;">
+        <div class="app-phone">
+          <div class="app-notch"></div>
+          <div class="app-screen">
+            <div class="app-screen-header">
+              <div class="app-screen-title">Human Factor <em>at Work</em></div>
+              <div class="app-screen-sub">Wellbeing Toolkit · Journal</div>
+            </div>
+            <div class="app-screen-body">
+              <div class="app-section-label">Today's prompt</div>
+              <div class="app-entry-box">
+                <div class="app-entry-title">Evening reflection</div>
+                <div class="app-entry-text">What took most of my mental energy today?</div>
+              </div>
+              <div class="app-section-label" style="margin-top:10px;">Quick tips</div>
+              <div class="app-tip-row">
+                <div class="app-tip-chip">🫁 Breathe</div>
+                <div class="app-tip-chip green">🌿 Walk</div>
+              </div>
+              <div class="app-tip-row">
+                <div class="app-tip-chip sky">🌬️ Mindful minute</div>
+                <div class="app-tip-chip amber">📋 Brain dump</div>
+              </div>
+              <div class="app-section-label" style="margin-top:10px;">Next Crossroads Café</div>
+              <div style="background:var(--cream-dark); border-radius:6px; padding:8px 10px;">
+                <div style="font-size:9px; font-weight:600; color:var(--teal);">Coming soon · Register interest</div>
+                <div style="font-size:9px; color:var(--slate-mid);">humanfactor@vaughan.coop</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-left">
+    <strong style="color:rgba(255,255,255,0.55);">Human Factor at Work · Wellbeing Toolkit</strong><br>
+    Leicester Vaughan College · Funded by NEBOSH Social Purpose Fund<br>
+    <a href="mailto:humanfactor@vaughan.coop" style="color:rgba(255,255,255,0.35); text-decoration:none;">humanfactor@vaughan.coop</a>
+    &nbsp;·&nbsp;
+    <a href="index.html" style="color:rgba(255,255,255,0.35); text-decoration:none;">emmaastra.github.io/human-factor-at-work</a>
+  </div>
+  <div style="display:flex; align-items:center; gap:16px;">
+    <img src="data:image/png;base64,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" alt="Vaughan College Leicester" style="height:32px; width:auto; filter:brightness(0) invert(1); opacity:0.25;"/>
+  </div>
+</footer>
+
+</body>
+</html>
